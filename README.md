@@ -18,8 +18,24 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+#
+### Running an application in Docker
+Follow these steps to get your project started with Docker:
+1. Make sure that Docker is installed on your PC. This can be done with the `docker -v` command.
+   If you don't have Docker installed, do it here [install Docker](https://docs.docker.com/engine/install/).
+2. Make sure you have Docker running.
+3. Make sure you are in the root folder of the project.
 
 
+To run an application in Docker for UNIX-like systems such as macOS or Linux, run the command:
+### `npm run start:docker:unix`
+and write you system password.
+##
+To run an application on Docker for Windows, run the command: run:
+### `npm run start:docker:windows`
+
+##
+### Build the project
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\

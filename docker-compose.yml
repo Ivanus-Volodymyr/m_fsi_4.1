@@ -1,0 +1,11 @@
+version: "1.2"
+services:
+  app:
+    container_name: m_fsi_4.1
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
