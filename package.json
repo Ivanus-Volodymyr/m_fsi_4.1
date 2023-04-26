@@ -2,10 +2,13 @@
   "name": "m_fsi_4.1",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://Ivanus-Volodymyr.github.io/m_fsi_4.1",
   "scripts": {
     "start": "react-scripts start",
     "start:docker:unix": "sudo docker-compose up --build",
     "start:docker:windows": "docker-compose up --build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -41,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^18.2.0"
+    "@types/react": "^18.2.0",
+    "gh-pages": "^5.0.0"
   }
 }
