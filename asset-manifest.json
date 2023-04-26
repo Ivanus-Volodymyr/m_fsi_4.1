@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/m_fsi_4.1/static/css/main.c12f7517.css",
+    "main.js": "/m_fsi_4.1/static/js/main.0232bab1.js",
+    "index.html": "/m_fsi_4.1/index.html",
+    "main.c12f7517.css.map": "/m_fsi_4.1/static/css/main.c12f7517.css.map",
+    "main.0232bab1.js.map": "/m_fsi_4.1/static/js/main.0232bab1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c12f7517.css",
+    "static/js/main.0232bab1.js"
+  ]
+}
