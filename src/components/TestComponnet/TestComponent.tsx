@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 
 import {Modal} from "../GeneralComponnents";
@@ -10,18 +10,25 @@ const TestComponent: React.FC = () => {
     const [active, setActive] = useState(false);
     const {value} = useAppSelector(state => state.counter);
     const dispatch = useDispatch();
-    const [response, setResponse] = useState({error: null, data: {}});
+    // const [response, setResponse] = useState({error: null, data: {}});
 
 
-    useEffect(() => {
-        checkServerService.checkServer()
-            .then(res => {
-                console.log(res);
-                setResponse({error: null, data: res.data})
-            })
-            .catch(err => setResponse({error: err.message, data: {}}));
+    // useEffect(() => {
+    //     checkServerService.checkServer()
+    //         .then(res => {
+    //             console.log("res");
+    //             console.log(res);
+    //             console.log("res");
+    //             setResponse({error: null, data: res.data})
+    //         })
+    //         .catch(err => setResponse({error: err.message, data: {}}));
+    //
+    // }, [response.error])
 
-    }, [response.error])
+    const check = async () => {
+        const result = await checkServerService.checkServer();
+        console.log(result);
+    }
 
     const plus = () => {
         dispatch(counterPlusAction(1));
@@ -36,7 +43,7 @@ const TestComponent: React.FC = () => {
             <div>
                 <h1>{value}</h1>
                 <button onClick={() => plus()}><h2>Plus</h2></button>
-                <button onClick={() => minus()}><h2>Minus</h2></button>
+                <button onClick={() => check()}><h2>Minus</h2></button>
             </div>
 
 
