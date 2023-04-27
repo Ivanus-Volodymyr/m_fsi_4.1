@@ -3,13 +3,13 @@ export interface IState {
     error: null | string;
 }
 
-export interface CounterActionTypes {
-    type: string;
+export interface CounterAction {
+    type: CounterActionTypes;
     payload: number;
 }
 
 
-export enum CounterAction {
+export enum CounterActionTypes {
     PLUS = 'plus',
     MINUS = 'minus'
 }

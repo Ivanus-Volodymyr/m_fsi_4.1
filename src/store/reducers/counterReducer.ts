@@ -5,11 +5,11 @@ const initialState: IState = {
     error: null,
 };
 
-export const counterReducer = (state = initialState, action: CounterActionTypes): IState => {
+export const counterReducer = (state = initialState, action: CounterAction): IState => {
     switch (action.type) {
-        case CounterAction.PLUS:
+        case CounterActionTypes.PLUS:
             return {...state, value: state.value + action.payload}
-        case CounterAction.MINUS:
+        case CounterActionTypes.MINUS:
             return {...state, value: state.value - action.payload}
         default:
             return state;
@@ -17,5 +17,5 @@ export const counterReducer = (state = initialState, action: CounterActionTypes)
 };
 
 
-export const counterPlusAction = (payload: number) => ({type: CounterAction.PLUS, payload})
-export const counterMinusAction = (payload: number) => ({type: CounterAction.MINUS, payload})
+export const counterPlusAction = (payload: number) => ({type: CounterActionTypes.PLUS, payload})
+export const counterMinusAction = (payload: number) => ({type: CounterActionTypes.MINUS, payload})
