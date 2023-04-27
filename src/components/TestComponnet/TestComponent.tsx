@@ -1,15 +1,27 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 
 import {Modal} from "../GeneralComponnents";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {counterMinusAction, counterPlusAction} from "../../store/reducers";
+import {checkServerService} from "../../services";
 
-const TestComponent = () => {
+const TestComponent: React.FC = () => {
     const [active, setActive] = useState(false);
     const {value} = useAppSelector(state => state.counter);
     const dispatch = useDispatch();
+    const [response, setResponse] = useState({error: null, data: {}});
 
+
+    useEffect(() => {
+        checkServerService.checkServer()
+            .then(res => {
+                console.log(res);
+                setResponse({error: null, data: res.data})
+            })
+            .catch(err => setResponse({error: err.message, data: {}}));
+
+    }, [response.error])
 
     const plus = () => {
         dispatch(counterPlusAction(1));
@@ -41,4 +53,4 @@ const TestComponent = () => {
     );
 };
 
-export default TestComponent;
+export {TestComponent};

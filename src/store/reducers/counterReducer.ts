@@ -1,4 +1,4 @@
-import {CounterAction, CounterActionTypes, IState} from "../../types/counter/counter";
+import {CounterAction, CounterActionTypes, IState} from "../../types";
 
 const initialState: IState = {
     value: 1,
