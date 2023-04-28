@@ -1,9 +1,4 @@
-import {
-    CheckServerAction,
-    CheckServerEnum,
-    ICheckServerResponse,
-    IInitialState
-} from "../../types";
+import {CheckServerAction, CheckServerEnum, IInitialState} from "../../types";
 
 const InitialState: IInitialState = {
     data: {
@@ -22,6 +17,4 @@ export const checkServerReducer = (state = InitialState, action: CheckServerActi
         default:
             return state;
     }
-}
-
-export const checkServerAction = (payload: ICheckServerResponse) => ({type: CheckServerEnum.SUCSESS, payload});
+};

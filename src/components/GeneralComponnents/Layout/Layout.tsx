@@ -3,13 +3,16 @@ import React from 'react';
 import {Header} from "../Header/Header";
 import {Footer} from "../Footer/Footer";
 import {Outlet} from "react-router-dom";
+import {PageTemplate} from "../PageTemplate/PageTemplate";
 
 
 const Layout = () => {
     return (
         <>
             <Header/>
-            <Outlet/>
+            <PageTemplate>
+                <Outlet/>
+            </PageTemplate>
             <Footer/>
         </>
     );
