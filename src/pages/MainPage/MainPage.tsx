@@ -1,7 +1,7 @@
 import React from 'react';
 
 import css from './MainPage.module.css';
-import TestComponent from "../../components/TestComponnet/TestComponent";
+import {TestComponent} from "../../components";
 
 const MainPage = () => {
 
