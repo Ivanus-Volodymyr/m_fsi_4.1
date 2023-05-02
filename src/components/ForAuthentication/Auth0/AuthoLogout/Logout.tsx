@@ -11,18 +11,18 @@ const Logout = () => {
     const {isAuthenticated, logout} = useAuth0();
     const dispatch = useDispatch();
 
-    const auth0Logout = async () => {
-        await localStorage.removeItem('access_token');
+    const authLogout = async () => {
         dispatch(logoutActionCreator())
         if (isAuthenticated) {
             logout();
         }
+        localStorage.removeItem('access_token');
     }
 
     return (
         <div>
-            {(isAuthenticated || user) && (
-                <Button onClick={() => auth0Logout()}>Sing Out</Button>
+            {user && (
+                <Button onClick={() => authLogout()}>Sing Out</Button>
             )}
         </div>
     );

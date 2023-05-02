@@ -15,7 +15,6 @@ import {fetchLogin, fetchProfile} from "../../store/action-creators";
 
 const Authentication = () => {
     const {loading_login, access_token, error_login} = useAppSelector(state => state.login);
-    const {user} = useAppSelector(state => state.profile);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -32,11 +31,7 @@ const Authentication = () => {
         if ((!loading_login) && access_token) {
             dispatch(fetchProfile());
         }
-        if (user) {
-            navigate('/about')
-        }
-
-    }, [loading_login, access_token, user, error_login]);
+    }, [loading_login, access_token, error_login]);
 
     const login = async (userDataToLogin: FormValues) => {
         await dispatch(fetchLogin(userDataToLogin));

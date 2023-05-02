@@ -20,6 +20,7 @@ export interface IProfile {
 
 export interface ProfileState {
     user: null | IProfile;
+    isAuth: boolean;
     loading: boolean;
     error: null | string;
 }

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
@@ -18,14 +18,35 @@ import {
 import './App.css';
 
 import {fetchProfile} from "./store/action-creators";
+import {useAppSelector} from "./hooks/useAppSelector";
+import {useAuth0} from "@auth0/auth0-react";
 
 const App = () => {
-    const token = localStorage.getItem('access_token');
+    const {user, isAuth} = useAppSelector(state => state.profile);
+
     const dispatch = useDispatch();
+    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
+    const [isAuth0, setIsAuth0] = useState<string>('');
+
+
+    const getTokenIfAuth0Login = async () => {
+        if (isAuthenticated) {
+            const token = await getAccessTokenSilently();
+            localStorage.setItem('access_token', token);
+            setIsAuth0(token);
+        }
+    }
+
+    useEffect(() => {
+        getTokenIfAuth0Login()
+    }, [isAuthenticated]);
+
 
     useEffect(() => {
         dispatch(fetchProfile())
-    }, []);
+    }, [isAuth0, isAuth, isAuthenticated]);
+
+
 
     return (
         <main>
@@ -35,12 +56,12 @@ const App = () => {
                     <Route index element={<MainPage/>}/>
                     <Route path={'/about'} element={<About/>}/>
 
-                    <Route element={<ToUnauthorizedUsers token={token} redirectPath={'/about'}/>}>
+                    <Route element={<ToUnauthorizedUsers user={user} redirectPath={'/about'}/>}>
                         <Route path={'/auth'} element={<Authentication/>}/>
                         <Route path={'/registration'} element={<Registration/>}/>
                     </Route>
 
-                    <Route element={<ProtectedRoute token={token} redirectPath={'/auth'}/>}>
+                    <Route element={<ProtectedRoute user={user} redirectPath={'/auth'}/>}>
                         <Route path={'/companies-list'} element={<CompaniesList/>}/>
                         <Route path={'/company-profile/:id'} element={<CompanyProfile/>}/>
                         <Route path={'/users-list'} element={<UsersList/>}/>
