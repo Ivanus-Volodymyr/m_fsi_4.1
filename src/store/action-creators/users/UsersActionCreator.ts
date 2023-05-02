@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 
-import {UserAction, UserActionTypes} from "../../../types/users/usersTypes";
+import {UserAction, UserActionTypes} from "../../../types";
 import {usersService} from "../../../services";
 
 export const fetchUsers = () => {
@@ -12,7 +12,7 @@ export const fetchUsers = () => {
         } catch (e: any) {
             dispatch({
                 type: UserActionTypes.FETCH_USERS_ERROR,
-                payload: e.message
+                payload: e.response.data.detail
             })
         }
     }

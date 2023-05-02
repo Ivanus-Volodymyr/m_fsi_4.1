@@ -4,7 +4,6 @@ import {useDispatch} from "react-redux";
 import {Button, Modal} from "../GeneralComponnents";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {counterMinusAction, counterPlusAction} from "../../store/reducers";
-import {fetchUsers} from "../../store/action-creators";
 
 const TestComponent: React.FC = () => {
     const [active, setActive] = useState(false);
@@ -14,7 +13,7 @@ const TestComponent: React.FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchUsers())
+        // dispatch(fetchUsers())
     }, [])
 
 

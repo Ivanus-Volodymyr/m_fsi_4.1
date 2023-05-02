@@ -19,6 +19,7 @@ root.render(
         clientId={auth0Config.clientId}
         authorizationParams={{
             redirect_uri: window.location.origin,
+            audience: auth0Config.audience,
         }}
     >
         <Provider store={store}>
