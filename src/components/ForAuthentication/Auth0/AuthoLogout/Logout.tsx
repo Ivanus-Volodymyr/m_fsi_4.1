@@ -4,10 +4,8 @@ import {useDispatch} from "react-redux";
 
 import {Button} from "../../../GeneralComponnents";
 import {logoutActionCreator} from "../../../../store/reducers";
-import {useAppSelector} from "../../../../hooks/useAppSelector";
 
 const Logout = () => {
-    const {user} = useAppSelector(state => state.profile);
     const {isAuthenticated, logout} = useAuth0();
     const dispatch = useDispatch();
 
@@ -20,11 +18,7 @@ const Logout = () => {
     }
 
     return (
-        <div>
-            {user && (
-                <Button onClick={() => authLogout()}>Sing Out</Button>
-            )}
-        </div>
+        <Button onClick={() => authLogout()}>Sing Out</Button>
     );
 };
 

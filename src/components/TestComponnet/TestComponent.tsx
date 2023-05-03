@@ -4,17 +4,16 @@ import {useDispatch} from "react-redux";
 import {Button, Modal} from "../GeneralComponnents";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {counterMinusAction, counterPlusAction} from "../../store/reducers";
-import {fetchUsers} from "../../store/action-creators";
 
 const TestComponent: React.FC = () => {
     const [active, setActive] = useState(false);
     const {value} = useAppSelector(state => state.counter);
 
-    const {users, error, loading} = useAppSelector(state => state.user);
+    const {error, loading} = useAppSelector(state => state.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchUsers())
+        // dispatch(fetchUsers())
     }, [])
 
 
@@ -44,7 +43,7 @@ const TestComponent: React.FC = () => {
             {/*it`s only to try modal window*/}
             <Button onClick={() => setActive(true)}>Modal open please</Button>
             <Modal activeModal={active} setActive={setActive}>
-                {users.map(user => <Button key={user.user_id}>{user.user_firstname}</Button>)}
+                {/*{users.map(user => <Button key={user.user_id}>{user.user_firstname}</Button>)}*/}
             </Modal>
         </div>
     );

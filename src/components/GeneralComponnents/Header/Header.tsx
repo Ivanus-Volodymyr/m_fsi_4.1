@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 import css from './Header.module.css';
 
@@ -14,7 +14,19 @@ const Header: React.FC = () => {
 
     return (
         <div className={css.header_container}>
-            <div>NAVBAR</div>
+            <div>
+                <nav>
+                    <NavLink to={'/about'}>About</NavLink>
+                    {isAuth &&
+                        <>
+                            <NavLink to={'/companies-list'}>Companies</NavLink>
+                            <NavLink to={'/users-list'}>Users</NavLink>
+                            <NavLink to={`/user-profile/${user?.user_id}`}>User</NavLink>
+                        </>
+                    }
+                </nav>
+            </div>
+
             {isAuth ?
                 <div>
                     {user?.user_email}
