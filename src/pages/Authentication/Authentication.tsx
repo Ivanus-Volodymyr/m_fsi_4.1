@@ -57,8 +57,8 @@ const Authentication = () => {
                 </div>
 
                 <h4>OR</h4>
-                <Auth0Login/>
             </Form>
+            <Auth0Login/>
         </div>
     );
 };
