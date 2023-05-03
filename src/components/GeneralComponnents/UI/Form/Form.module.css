@@ -1,0 +1,13 @@
+.form {
+    padding: 50px 20px;
+    color: teal;
+    background-color: #def3f3;
+    border: 1px solid teal;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    animation: none;
+}

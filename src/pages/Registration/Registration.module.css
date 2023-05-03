@@ -1,3 +1,22 @@
 .registration_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
 
+.redirect_text {
+    color: teal;
+    background-color: #def3f3;
+    border: 1px solid teal;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    animation: none;
+    width: 500px;
+    height: 500px;
 }
