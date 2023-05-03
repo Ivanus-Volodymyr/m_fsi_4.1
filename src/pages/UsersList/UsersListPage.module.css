@@ -1,8 +1,7 @@
-.form {
+.users_list_container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    row-gap: 30px;
-    animation: none;
+    width: 100%;
 }

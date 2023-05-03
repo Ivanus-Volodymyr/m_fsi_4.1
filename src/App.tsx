@@ -12,7 +12,7 @@ import {
     MainPage,
     Registration,
     UserProfile,
-    UsersList
+    UsersListPage,
 } from "./pages";
 
 import './App.css';
@@ -47,7 +47,6 @@ const App = () => {
     }, [isAuth0, isAuth, isAuthenticated]);
 
 
-
     return (
         <main>
             <Routes>
@@ -64,7 +63,7 @@ const App = () => {
                     <Route element={<ProtectedRoute user={user} redirectPath={'/auth'}/>}>
                         <Route path={'/companies-list'} element={<CompaniesList/>}/>
                         <Route path={'/company-profile/:id'} element={<CompanyProfile/>}/>
-                        <Route path={'/users-list'} element={<UsersList/>}/>
+                        <Route path={'/users-list'} element={<UsersListPage/>}/>
                         <Route path={'/user-profile/:id'} element={<UserProfile/>}/>
                     </Route>
 

@@ -9,7 +9,6 @@ const TestComponent: React.FC = () => {
     const [active, setActive] = useState(false);
     const {value} = useAppSelector(state => state.counter);
 
-    const {error, loading} = useAppSelector(state => state.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,13 +21,6 @@ const TestComponent: React.FC = () => {
     }
     const minus = () => {
         dispatch(counterMinusAction(1));
-    }
-
-    if (error) {
-        return <h1>{error}</h1>
-    }
-    if (loading) {
-        return <h1>Йде загрузка.......</h1>
     }
 
     return (

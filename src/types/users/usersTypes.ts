@@ -9,15 +9,19 @@ export interface IFetchUsersResponse {
 }
 
 export interface UserState {
-    users: IProfile[];
+    users: IProfile[] | [];
     loading: boolean;
     error: null | string;
+    oneUser: IProfile | null;
 }
 
 export enum UserActionTypes {
     FETCH_USERS = 'FETCH_USERS',
     FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS',
     FETCH_USERS_ERROR = 'FETCH_USERS_FETCH_USERS_ERROR',
+    FETCH_ONE_USER = 'FETCH_ONE_USER',
+    FETCH_ONE_USER_SUCCESS = 'FETCH_ONE_USER_SUCCESS',
+    FETCH_ONE_USER_ERROR = 'FETCH_ONE_USER_ERROR',
 }
 
 interface FetchUsersAction {
@@ -34,4 +38,24 @@ interface FetchUsersErrorAction {
     payload: string;
 }
 
-export type UserAction = FetchUsersAction | FetchUsersErrorAction | FetchUsersSuccessAction
+interface FetchOneUserAction {
+    type: UserActionTypes.FETCH_ONE_USER;
+}
+
+interface FetchOneUserSuccessAction {
+    type: UserActionTypes.FETCH_ONE_USER_SUCCESS;
+    payload: IProfile;
+}
+
+interface FetchOneUserErrorAction {
+    type: UserActionTypes.FETCH_ONE_USER_ERROR;
+    payload: string;
+}
+
+export type UserAction =
+    FetchUsersAction
+    | FetchUsersErrorAction
+    | FetchUsersSuccessAction
+    | FetchOneUserAction
+    | FetchOneUserSuccessAction
+    | FetchOneUserErrorAction
