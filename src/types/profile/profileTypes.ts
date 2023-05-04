@@ -9,12 +9,12 @@ export interface IProfile {
     user_email: string;
     user_firstname: string;
     user_lastname: string;
-    user_avatar?: null | string;
-    user_status?: null | string;
-    user_city?: null | string;
-    user_phone?: null | string | number;
-    user_links?: null | string;
-    is_superuser?: boolean;
+    user_avatar: null | string;
+    user_status: null | string;
+    user_city: null | string;
+    user_phone: null | string | number;
+    user_links: null | string[];
+    is_superuser: boolean;
 }
 
 

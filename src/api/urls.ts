@@ -6,12 +6,18 @@ export default API;
 
 export const urls = {
     checkServer: '/',
-    users:'/users',
+    users: '/users',
 
     //auth and login
     user: '/user/',
     login: '/auth/login/',
 
-    profile:'/auth/me/',
+    //profile
+    profile: '/auth/me/',
+
+    //update user data
+    user_update_info: '/user/',
+    user_update_password: '/user/',
+    user_update_avatar: '/user/',
 
 }
