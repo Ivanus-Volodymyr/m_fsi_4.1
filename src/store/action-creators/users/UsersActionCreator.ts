@@ -1,12 +1,6 @@
 import {Dispatch} from "redux";
 
-import {
-    FormUpdateGeneralInfoValues,
-    FormUpdatePasswordValues,
-    UserAction,
-    UserActionTypes,
-    UserState
-} from "../../../types";
+import {FormUpdateGeneralInfoValues, FormUpdatePasswordValues, UserAction, UserActionTypes} from "../../../types";
 import {usersService} from "../../../services";
 
 export const fetchUsers = (page: number) => {
@@ -45,14 +39,13 @@ export const fetchOneUser = (userId: number) => {
 
 
 export const updateUserGeneralInfo = (userId: number, userData: FormUpdateGeneralInfoValues) => {
-    return async (dispatch: Dispatch<UserAction>, getState: UserState): Promise<void> => {
+    return async (dispatch: Dispatch<UserAction>): Promise<void> => {
         try {
             dispatch({type: UserActionTypes.UPDATE_ONE_USER_GENERAL});
             const {data} = await usersService.userUpdateInfo(userId, userData);
             if (data.status_code === 200) {
                 dispatch({type: UserActionTypes.UPDATE_ONE_USER_GENERAL_SUCCESS, payload: true})
             }
-            getState.isUserUpdated = false;
         } catch (e: any) {
             dispatch({
                 type: UserActionTypes.UPDATE_ONE_USER_GENERAL_ERROR,
@@ -64,14 +57,13 @@ export const updateUserGeneralInfo = (userId: number, userData: FormUpdateGenera
 
 
 export const updateUserPassword = (userId: number, userData: FormUpdatePasswordValues) => {
-    return async (dispatch: Dispatch<UserAction>, getState: UserState): Promise<void> => {
+    return async (dispatch: Dispatch<UserAction>): Promise<void> => {
         try {
             dispatch({type: UserActionTypes.UPDATE_ONE_USER_PASSWORD});
             const {data} = await usersService.userUpdatePassword(userId, userData);
             if (data.status_code === 200) {
                 dispatch({type: UserActionTypes.UPDATE_ONE_USER_PASSWORD_SUCCESS, payload: true})
             }
-            getState.isUserUpdated = false;
         } catch (e: any) {
             dispatch({
                 type: UserActionTypes.UPDATE_ONE_USER_PASSWORD_ERROR,
@@ -83,14 +75,13 @@ export const updateUserPassword = (userId: number, userData: FormUpdatePasswordV
 
 
 export const updateUserAvatar = (userId: number, file: FormData) => {
-    return async (dispatch: Dispatch<UserAction>, getState: UserState): Promise<void> => {
+    return async (dispatch: Dispatch<UserAction>): Promise<void> => {
         try {
             dispatch({type: UserActionTypes.UPDATE_ONE_USER_AVATAR});
             const {data} = await usersService.updateUserAvatar(userId, file);
             if (data.status_code === 200) {
                 dispatch({type: UserActionTypes.UPDATE_ONE_USER_AVATAR_SUCCESS, payload: true})
             }
-            getState.isUserUpdated = false;
         } catch (e: any) {
             dispatch({
                 type: UserActionTypes.UPDATE_ONE_USER_AVATAR_ERROR,

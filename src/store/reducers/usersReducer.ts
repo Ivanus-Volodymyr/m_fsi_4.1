@@ -58,7 +58,13 @@ export const usersReducer = (state = initialState, action: UserAction): UserStat
         case UserActionTypes.DELETE_ONE_USER_ERROR:
             return {...state, oneUserLoading: false, isUserUpdated: false, oneUserError: action.payload}
 
+        case UserActionTypes.CLEAR_UPDATED:
+            return {...state, isUserUpdated: false}
+
         default:
             return state
     }
 }
+
+export const clearUpdated = () => ({type: UserActionTypes.CLEAR_UPDATED})
+
