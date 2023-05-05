@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
+import {useAuth0} from "@auth0/auth0-react";
 
 import css from './UserProfile.module.css';
 
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {deleteUser, fetchOneUser} from "../../store/action-creators";
 import {Button, Modal, UpdateAvatarForm, UpdateGeneralInfoForm, UpdatePasswordForm} from "../../components";
-import {clearUpdated} from "../../store/reducers";
+import {clearUpdated, logoutActionCreator} from "../../store/reducers";
 
 const UserProfile = () => {
+    const {isAuthenticated, logout} = useAuth0();
     const {user} = useAppSelector(state => state.profile);
     const {
         oneUser,
@@ -60,8 +62,14 @@ const UserProfile = () => {
     }, [isUserDeleted])
 
 
-    const deleteUserById = () => {
-        dispatch(deleteUser(Number(oneUser?.user_id)));
+    const deleteUserById = async () => {
+        await dispatch(deleteUser(Number(oneUser?.user_id)));
+        if (isAuthenticated) {
+            logout();
+        }
+        await localStorage.removeItem('access_token');
+
+        dispatch(logoutActionCreator());
         setActive(false);
     }
 
@@ -82,7 +90,7 @@ const UserProfile = () => {
 
                     <Modal activeModal={active} setActive={setActive}>
                         <div className={css.modal}>
-                            <h1>You are going to delete this user permanently. Are you really sure about this?</h1>
+                            <h1>You are going to delete your account permanently. Are you really sure about this?</h1>
                             <Button onClick={() => deleteUserById()}><h2>Yes, I want to delete this user!</h2></Button>
                             <Button onClick={() => setActive(false)}><h2>No!</h2></Button>
                         </div>
