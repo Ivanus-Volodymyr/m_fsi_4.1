@@ -20,9 +20,9 @@ export const usersService = {
     login: (loginData: IUserDataToLogin) => axiosService.post<IUserDataAfterLoginResponse>(urls.login, loginData),
 
     //get
-    getUsers: (page_size: number = 10, page: number = 1) => axiosService.get<IFetchUsersResponse>(urls.users, {
+    getUsers: (page: number = 1) => axiosService.get<IFetchUsersResponse>(urls.users, {
         params: {
-            page_size,
+            page_size: 10,
             page
         }
     }),

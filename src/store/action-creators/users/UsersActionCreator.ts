@@ -14,7 +14,6 @@ export const fetchUsers = (page: number) => {
         try {
             dispatch({type: UserActionTypes.FETCH_USERS})
             const {data} = await usersService.getUsers(page);
-            console.log(data.result.pagination);
             dispatch({
                 type: UserActionTypes.FETCH_USERS_SUCCESS,
                 payload: {users: data.result.users, pagination: data.result.pagination}
