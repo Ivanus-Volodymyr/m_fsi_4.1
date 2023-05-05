@@ -5,3 +5,4 @@ export * from './users/userTypes';
 export * from './profile/profileTypes';
 export * from './auth/registrationTypes';
 export * from './auth/loginTypes';
+export * from './companies/companiesTypes';

@@ -5,6 +5,7 @@ import {checkServerReducer} from "./checkServerReducer";
 import {usersReducer} from "./usersReducer";
 import {profileReducer} from "./profileReducer";
 import {loginReducer, registrationReducer} from "./authReducer";
+import {companiesReducer} from "./companiesReducer";
 
 export const rootReducer = combineReducers({
     counter: counterReducer,
@@ -13,6 +14,7 @@ export const rootReducer = combineReducers({
     profile: profileReducer,
     registration: registrationReducer,
     login: loginReducer,
+    companies: companiesReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

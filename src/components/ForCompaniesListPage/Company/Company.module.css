@@ -1,0 +1,26 @@
+.company_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    min-width: 200px;
+    min-height: 200px;
+    border: 1px solid teal;
+    box-shadow: 0 0 10px rgba(168, 246, 209, 0.66);
+    border-radius: 10px;
+    margin: 20px;
+    row-gap: 10px;
+}
+
+.company_container:hover {
+    border-radius: 14px;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px rgba(56, 122, 89, 0.66);
+    cursor: pointer;
+}
+
+.company_container > img {
+    width: 100px;
+    height: 100px;
+}
