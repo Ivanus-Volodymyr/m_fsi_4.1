@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
+import {useAuth0} from "@auth0/auth0-react";
 
 import css from './UserProfile.module.css';
 
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {deleteUser, fetchOneUser} from "../../store/action-creators";
 import {Button, Modal, UpdateAvatarForm, UpdateGeneralInfoForm, UpdatePasswordForm} from "../../components";
+import {clearUpdated, logoutActionCreator} from "../../store/reducers";
 
 const UserProfile = () => {
+    const {isAuthenticated, logout} = useAuth0();
+    const {user} = useAppSelector(state => state.profile);
     const {
         oneUser,
         loading,
         isUserUpdated,
         oneUserError,
-        oneUserLoading,
         isUserDeleted,
     } = useAppSelector(state => state.users);
 
@@ -37,6 +40,7 @@ const UserProfile = () => {
         if (isUserUpdated) {
             setStatus(`User ${oneUser?.user_firstname} updated`)
             setTimeout(() => {
+                dispatch(clearUpdated())
                 dispatch(fetchOneUser(Number(id)));
                 setStatus('');
                 setUpdate(false);
@@ -48,7 +52,7 @@ const UserProfile = () => {
             setTimeout(() => setStatus(''), 3000);
         }
 
-    }, [isUserUpdated, oneUserLoading, oneUserError]);
+    }, [isUserUpdated, oneUserError]);
 
 
     useEffect(() => {
@@ -58,8 +62,14 @@ const UserProfile = () => {
     }, [isUserDeleted])
 
 
-    const deleteUserById = () => {
-        dispatch(deleteUser(Number(oneUser?.user_id)));
+    const deleteUserById = async () => {
+        await dispatch(deleteUser(Number(oneUser?.user_id)));
+        if (isAuthenticated) {
+            logout();
+        }
+        await localStorage.removeItem('access_token');
+
+        dispatch(logoutActionCreator());
         setActive(false);
     }
 
@@ -71,13 +81,16 @@ const UserProfile = () => {
                     <div className={css.user_profile_header}>
                         <h1>User - {oneUser?.user_firstname}</h1>
                         <h3>{status}</h3>
-                        <Button onClick={() => setActive(true)}>Delete this user</Button>
+                        {user?.user_id === oneUser?.user_id &&
+                            <Button onClick={() => setActive(true)}>
+                                Delete my account
+                            </Button>}
                     </div>
 
 
                     <Modal activeModal={active} setActive={setActive}>
                         <div className={css.modal}>
-                            <h1>You are going to delete this user permanently. Are you really sure about this?</h1>
+                            <h1>You are going to delete your account permanently. Are you really sure about this?</h1>
                             <Button onClick={() => deleteUserById()}><h2>Yes, I want to delete this user!</h2></Button>
                             <Button onClick={() => setActive(false)}><h2>No!</h2></Button>
                         </div>
@@ -90,9 +103,11 @@ const UserProfile = () => {
                         </div>
                         <div className={css.user_info}>
                             <div className={css.update_user}>
-                                <Button onClick={() => setUpdate(true)}>
-                                    {update ? "Cancel updating" : 'Update this user'}
-                                </Button>
+                                {user?.user_id === oneUser?.user_id &&
+                                    <Button onClick={() => setUpdate(!update)}>
+                                        {update ? "Cancel updating" : 'Update this user'}
+                                    </Button>
+                                }
                             </div>
                             {update ?
                                 <div className={css.update_block}>

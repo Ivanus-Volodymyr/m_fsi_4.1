@@ -51,6 +51,8 @@ export enum UserActionTypes {
     UPDATE_ONE_USER_AVATAR = 'UPDATE_ONE_USER_AVATAR',
     UPDATE_ONE_USER_AVATAR_SUCCESS = 'UPDATE_ONE_USER_AVATAR_SUCCESS',
     UPDATE_ONE_USER_AVATAR_ERROR = 'UPDATE_ONE_USER_AVATAR_ERROR',
+
+    CLEAR_UPDATED = 'CLEAR_UPDATED',
 }
 
 interface FetchUsersAction {
@@ -141,6 +143,10 @@ interface UpdateUserAvatarError {
     payload: string,
 }
 
+interface ClearUpdated {
+    type: UserActionTypes.CLEAR_UPDATED,
+}
+
 
 export type UserAction =
     FetchUsersAction
@@ -161,3 +167,4 @@ export type UserAction =
     | UpdateUserAvatar
     | UpdateUserAvatarSuccess
     | UpdateUserAvatarError
+    | ClearUpdated
