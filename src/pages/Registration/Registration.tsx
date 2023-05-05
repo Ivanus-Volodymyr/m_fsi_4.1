@@ -53,34 +53,37 @@ const Registration: React.FC = () => {
 
     return (
         <div className={css.registration_container}>
-            {registrationSuccess ? <div className={css.redirect_text}>
-                    You have successfully registered on the platform. You will now be redirected to the login page and
-                    authorized to.
-                </div> :
-                <Form onSubmit={handleSubmit(registration)}>
-                    <Input placeholder={'First name *'} {...register('user_firstname')}/>
-                    {errors.user_firstname && <div>{errors.user_firstname.message}</div>}
+            <div className={css.registration_container_children}>
+                {registrationSuccess ? <div className={css.redirect_text}>
+                        You have successfully registered on the platform. You will now be redirected to the login page and
+                        authorized to.
+                    </div> :
+                    <Form onSubmit={handleSubmit(registration)}>
+                        <Input placeholder={'First name *'} {...register('user_firstname')}/>
+                        {errors.user_firstname && <div>{errors.user_firstname.message}</div>}
 
-                    <Input placeholder={'Name * '} {...register('user_lastname')}/>
-                    {errors.user_lastname && <div>{errors.user_lastname.message}</div>}
+                        <Input placeholder={'Name * '} {...register('user_lastname')}/>
+                        {errors.user_lastname && <div>{errors.user_lastname.message}</div>}
 
-                    <Input placeholder={'Email * '} {...register('user_email')}/>
-                    {errors.user_email && <div>{errors.user_email.message}</div>}
+                        <Input placeholder={'Email * '} {...register('user_email')}/>
+                        {errors.user_email && <div>{errors.user_email.message}</div>}
 
-                    <Input placeholder={'Password * '} type={"password"} {...register('user_password')}/>
-                    {errors.user_password && <div>{errors.user_password.message}</div>}
+                        <Input placeholder={'Password * '} type={"password"} {...register('user_password')}/>
+                        {errors.user_password && <div>{errors.user_password.message}</div>}
 
-                    <Input placeholder={'Repeat password * '} type={"password"} {...register('user_password_repeat')}/>
-                    {errors.user_password_repeat && <div>{errors.user_password_repeat.message}</div>}
-                    {passwordRepeatError && <div>{passwordRepeatError}</div>}
+                        <Input placeholder={'Repeat password * '}
+                               type={"password"} {...register('user_password_repeat')}/>
+                        {errors.user_password_repeat && <div>{errors.user_password_repeat.message}</div>}
+                        {passwordRepeatError && <div>{passwordRepeatError}</div>}
 
-                    {error && <div>{error}</div>}
-                    {loading ? <h1>Loading ... </h1> : <Button>Sing Up</Button>}
+                        {error && <div>{error}</div>}
+                        {loading ? <h1>Loading ... </h1> : <Button>Sing Up</Button>}
 
-                    <h4>OR</h4>
-                    <Auth0Login/>
-                </Form>
-            }
+                        <h4>OR</h4>
+                    </Form>
+                }
+                <Auth0Login/>
+            </div>
         </div>
     );
 };

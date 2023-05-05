@@ -5,4 +5,4 @@ export * from './CompanyProfile/CompanyProfile';
 export * from './MainPage/MainPage';
 export * from './Registration/Registration';
 export * from './UserProfile/UserProfile';
-export * from './UsersList/UsersList';
+export * from './UsersList/UsersListPage';

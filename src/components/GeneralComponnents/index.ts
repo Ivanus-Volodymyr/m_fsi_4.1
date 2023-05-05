@@ -4,3 +4,4 @@ export * from './Layout/Layout';
 export * from './Modal/Modal';
 export * from './UI';
 export * from './PageTemplate/PageTemplate';
+export * from './Pagination/Pagination';

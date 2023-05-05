@@ -1,0 +1,16 @@
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid teal;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 70%;
+}
+.user:hover {
+    border-radius: 13px;
+    background: #FFFFFF;
+    box-shadow: 0 0 10px rgba(56, 122, 89, 0.66);
+    cursor: pointer;
+}

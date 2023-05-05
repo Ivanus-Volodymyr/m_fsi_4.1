@@ -41,24 +41,26 @@ const Authentication = () => {
 
     return (
         <div className={css.authentication_container}>
-            <Form onSubmit={handleSubmit(login)}>
-                <Input placeholder={'Email * '} {...register('user_email')}/>
-                {errors.user_email && <div>{errors.user_email.message}</div>}
+            <div className={css.authentication_container_children}>
+                <Form onSubmit={handleSubmit(login)}>
+                    <Input placeholder={'Email * '} {...register('user_email')}/>
+                    {errors.user_email && <div>{errors.user_email.message}</div>}
 
-                <Input placeholder={'Password * '} type={"password"} {...register('user_password')}/>
-                {errors.user_password && <div>{errors.user_password.message}</div>}
+                    <Input placeholder={'Password * '} type={"password"} {...register('user_password')}/>
+                    {errors.user_password && <div>{errors.user_password.message}</div>}
 
-                {error_login && <div>{error_login}</div>}
-                {loading_login ? <h1>Loading...</h1> : <Button>LOGIN</Button>}
+                    {error_login && <div>{error_login}</div>}
+                    {loading_login ? <h1>Loading...</h1> : <Button>LOGIN</Button>}
 
-                <div>Don't have an account? <span
-                    className={css.navigate}
-                    onClick={() => navigate('/auth')}>Sing Up right now</span>
-                </div>
+                    <div>Don't have an account? <span
+                        className={css.navigate}
+                        onClick={() => navigate('/registration')}>Sing Up right now</span>
+                    </div>
 
-                <h4>OR</h4>
-            </Form>
-            <Auth0Login/>
+                    <h4>OR</h4>
+                </Form>
+                <Auth0Login/>
+            </div>
         </div>
     );
 };
