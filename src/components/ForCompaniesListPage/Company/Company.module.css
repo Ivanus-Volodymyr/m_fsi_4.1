@@ -24,3 +24,9 @@
     width: 100px;
     height: 100px;
 }
+
+.company_container > div {
+    font-size: 16px;
+    color: teal;
+    font-weight: bold;
+}

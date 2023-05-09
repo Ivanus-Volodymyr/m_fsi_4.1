@@ -21,6 +21,7 @@ export const urls = {
     user_update_avatar: '/user/',
 
     //companies
-    companies:'/companies/'
+    companies: '/companies/',
+    company: '/company/'
 
 }

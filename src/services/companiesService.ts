@@ -2,7 +2,7 @@ import {axiosService} from "./axiosService";
 
 import {urls} from "../api/urls";
 
-import {GetAllCompaniesResponse} from "../types";
+import {GetAllCompaniesResponse, GetOneCompanyResponse} from "../types";
 
 export const companiesService = {
     //get
@@ -12,4 +12,5 @@ export const companiesService = {
             page
         }
     }),
+    getCompanyById: (companyId: number) => axiosService.get<GetOneCompanyResponse>(urls.company + `${companyId}`)
 }

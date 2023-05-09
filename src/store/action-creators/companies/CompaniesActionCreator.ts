@@ -23,3 +23,18 @@ export const fetchAllCompanies = (page: number) => {
         }
     }
 }
+
+export const fetchOneCompany = (companyId: number) => {
+    return async (dispatch: Dispatch<CompaniesType>): Promise<void> => {
+        try {
+            dispatch({type: CompaniesAction.FETCH_ONE_COMPANY});
+            const {data} = await companiesService.getCompanyById(companyId);
+            dispatch({type: CompaniesAction.FETCH_ONE_COMPANY_SUCCESS, payload: data.result})
+        } catch (e: any) {
+            dispatch({
+                type: CompaniesAction.FETCH_ONE_COMPANY_ERROR,
+                payload: e.response.data.detail,
+            })
+        }
+    }
+}
