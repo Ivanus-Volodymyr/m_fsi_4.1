@@ -1,4 +1,6 @@
 import {IPagination} from "../users/usersTypes";
+import {GeneralResponse} from "../response/responseTypes";
+import {IProfile} from "../profile/profileTypes";
 
 export interface ICompanyDataToCreate {
     company_name: string;
@@ -17,22 +19,31 @@ export interface ICompanyDetails extends ICompany {
     company_description: string | null;
     company_city: string | null;
     company_phone: string | null;
-    company_links: string[] | null
+    company_links: string[] | null;
+    company_owner: Partial<IProfile>;
 }
 
-export interface GetAllCompaniesResponse {
-    status_code: number
-    detail: string;
+export interface GetAllCompaniesResponse extends GeneralResponse {
     result: {
         companies: ICompany[];
         pagination: IPagination;
     }
 }
 
-export interface GetOneCompanyResponse {
-    status_code: number
-    detail: string;
+export interface GetOneCompanyResponse extends GeneralResponse {
     result: ICompanyDetails;
+}
+
+export interface CreateOneCompanyResponse extends GeneralResponse {
+    result: {
+        company_id: number;
+    }
+}
+
+export type UpdateCompanyResponse = CreateOneCompanyResponse;
+
+export interface DeleteCompanyResponse extends GeneralResponse {
+    result: null
 }
 
 export interface ICompaniesInitialState {
@@ -43,9 +54,14 @@ export interface ICompaniesInitialState {
     oneCompany: ICompanyDetails | null
     oneCompanyLoading: boolean,
     oneCompanyError: null | string,
+    oneCompanyId: null | number,
+    isUpdatedCompany: boolean,
+    isDeletedCompany: boolean
 }
 
 export enum CompaniesAction {
+    CLEAR_ONE_COMPANY_STATE = 'CLEAR_ONE_COMPANY_STATE',
+
     FETCH_COMPANIES = 'FETCH_COMPANIES',
     FETCH_COMPANIES_SUCCESS = 'FETCH_COMPANIES_SUCCESS',
     FETCH_COMPANIES_ERROR = 'FETCH_COMPANIES_ERROR',
@@ -53,8 +69,32 @@ export enum CompaniesAction {
     FETCH_ONE_COMPANY = 'FETCH_ONE_COMPANY',
     FETCH_ONE_COMPANY_SUCCESS = 'FETCH_ONE_COMPANY_SUCCESS',
     FETCH_ONE_COMPANY_ERROR = 'FETCH_ONE_COMPANY_ERROR',
+
+    CREATE_COMPANY = 'CREATE_COMPANY',
+    CREATE_COMPANY_SECCESS = 'CREATE_COMPANY_SECCESS',
+    CREATE_COMPANY_ERROR = 'CREATE_COMPANY_ERROR',
+
+    UPDATE_COMPANY = 'UPDATE_COMPANY',
+    UPDATE_COMPANY_SUCCESS = 'UPDATE_COMPANY_SUCCESS',
+    UPDATE_COMPANY_ERROR = 'UPDATE_COMPANY_ERROR',
+    //
+    // UPDATE_COMPANY_VISIBLE = 'UPDATE_COMPANY_VISIBLE',
+    // UPDATE_COMPANY_VISIBLE_SUCCESS = 'UPDATE_COMPANY_VISIBLE_SUCCESS',
+    // UPDATE_COMPANY_VISIBLE_ERRORR = 'UPDATE_COMPANY_VISIBLE_ERRORR',
+    //
+    // UPDATE_COMPANY_AVATAR = 'UPDATE_COMPANY_AVATAR',
+    // UPDATE_COMPANY_AVATAR_SUCCESS = 'UPDATE_COMPANY_AVATAR_SUCCESS',
+    // UPDATE_COMPANY_AVATAR_ERROR = 'UPDATE_COMPANY_AVATAR_ERROR',
+
+    DELETE_COMPANY = 'DELETE_COMPANY',
+    DELETE_COMPANY_SUCCESS = 'DELETE_COMPANY_SUCCESS',
+    DELETE_COMPANY_ERROR = 'DELETE_COMPANY_ERROR',
 }
 
+
+interface ClearOneCompanyState {
+    type: CompaniesAction.CLEAR_ONE_COMPANY_STATE,
+}
 
 interface FetchCompanies {
     type: CompaniesAction.FETCH_COMPANIES,
@@ -88,10 +128,64 @@ interface FetchOneCompanyError {
 }
 
 
+interface CreateCompany {
+    type: CompaniesAction.CREATE_COMPANY,
+}
+
+interface CreateOneCompanySuccess {
+    type: CompaniesAction.CREATE_COMPANY_SECCESS,
+    payload: number,
+}
+
+interface CreateCompanyError {
+    type: CompaniesAction.CREATE_COMPANY_ERROR,
+    payload: string,
+}
+
+interface UpdateCompany {
+    type: CompaniesAction.UPDATE_COMPANY
+}
+
+interface UpdateCompanySuccess {
+    type: CompaniesAction.UPDATE_COMPANY_SUCCESS,
+    payload: number,
+}
+
+interface UpdateCompanyError {
+    type: CompaniesAction.UPDATE_COMPANY_ERROR,
+    payload: string,
+}
+
+
+interface DeleteCompany {
+    type: CompaniesAction.DELETE_COMPANY,
+    payload: boolean;
+}
+
+interface DeleteCompanySuccess {
+    type: CompaniesAction.DELETE_COMPANY_SUCCESS,
+    payload: boolean;
+}
+
+interface DeleteCompanyError {
+    type: CompaniesAction.DELETE_COMPANY_ERROR,
+    payload: string,
+}
+
 export type CompaniesType =
-    FetchCompanies
+    ClearOneCompanyState
+    | FetchCompanies
     | FetchCompaniesSuccess
     | FetchCompaniesError
     | FetchOneCompany
     | FetchOneCompanySuccess
     | FetchOneCompanyError
+    | CreateCompany
+    | CreateOneCompanySuccess
+    | CreateCompanyError
+    | UpdateCompany
+    | UpdateCompanySuccess
+    | UpdateCompanyError
+    | DeleteCompany
+    | DeleteCompanySuccess
+    | DeleteCompanyError

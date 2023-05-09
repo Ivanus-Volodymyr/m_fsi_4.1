@@ -2,7 +2,13 @@ import {axiosService} from "./axiosService";
 
 import {urls} from "../api/urls";
 
-import {GetAllCompaniesResponse, GetOneCompanyResponse} from "../types";
+import {
+    CreateOneCompanyResponse,
+    DeleteCompanyResponse,
+    GetAllCompaniesResponse,
+    GetOneCompanyResponse,
+    ICompanyDataToCreate
+} from "../types";
 
 export const companiesService = {
     //get
@@ -12,5 +18,12 @@ export const companiesService = {
             page
         }
     }),
-    getCompanyById: (companyId: number) => axiosService.get<GetOneCompanyResponse>(urls.company + `${companyId}`)
+    getCompanyById: (companyId: number) => axiosService.get<GetOneCompanyResponse>(urls.company + `${companyId}`),
+
+    //create
+    createCompany: (companyData: ICompanyDataToCreate) => axiosService.post<CreateOneCompanyResponse>(urls.company, companyData),
+
+
+    //delete
+    deleteCompany: (companyId: number) => axiosService.delete<DeleteCompanyResponse>(urls.company + `${companyId}`),
 }

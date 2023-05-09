@@ -23,10 +23,14 @@ export interface ProfileState {
     isAuth: boolean;
     loading: boolean;
     error: null | string;
+    canIGetProfile: boolean;
 }
 
 export enum ProfileActionTypes {
     LOGOUT = 'LOGOUT',
+
+    CAN_I_GET_PROFILE = 'CAN_I_GET_PROFILE',
+
     FETCH_PROFILE = 'FETCH_PROFILE',
     FETCH_PROFILE_SUCCESS = 'FETCH_PROFILE_SUCCESS',
     FETCH_PROFILE_ERROR = 'FETCH_PROFILE_ERROR',
@@ -34,6 +38,10 @@ export enum ProfileActionTypes {
 
 interface Logout {
     type: ProfileActionTypes.LOGOUT,
+}
+
+interface CanIGetProfile {
+    type: ProfileActionTypes.CAN_I_GET_PROFILE,
 }
 
 interface FetchProfileAction {
@@ -50,4 +58,9 @@ interface FetchProfileErrorAction {
     payload: string;
 }
 
-export type ProfileAction = Logout | FetchProfileAction | FetchProfileSuccessAction | FetchProfileErrorAction
+export type ProfileAction =
+    Logout
+    | FetchProfileAction
+    | FetchProfileSuccessAction
+    | FetchProfileErrorAction
+    | CanIGetProfile

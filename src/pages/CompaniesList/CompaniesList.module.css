@@ -5,38 +5,13 @@
     align-items: center;
 }
 
-.companies_list_container > div:first-child {
+hr {
     width: 90%;
-    display: flex;
-    justify-content: flex-end;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid teal;
-}
-
-.form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 30px;
-    row-gap: 20px;
-    width: 100%;
-}
-
-.checkbox {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
     color: teal;
+    height: 1px;
 }
 
-.checkbox > span {
-    font-size: 16px;
-}
-
-.checkbox > input {
-    width: 50px;
-    height: 20px;
+.companies_list_container > div {
+    width: 90%;
+    padding: 20px 0;
 }
