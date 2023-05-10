@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
@@ -19,32 +19,16 @@ import './App.css';
 
 import {fetchProfile} from "./store/action-creators";
 import {useAppSelector} from "./hooks/useAppSelector";
-import {useAuth0} from "@auth0/auth0-react";
 
 const App = () => {
-    const {user, isAuth} = useAppSelector(state => state.profile);
+    const {user, canIGetProfile} = useAppSelector(state => state.profile);
 
     const dispatch = useDispatch();
-    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
-    const [isAuth0, setIsAuth0] = useState<string>('');
-
-
-    const getTokenIfAuth0Login = async () => {
-        if (isAuthenticated) {
-            const token = await getAccessTokenSilently();
-            localStorage.setItem('access_token', token);
-            setIsAuth0(token);
-        }
-    }
-
-    useEffect(() => {
-        getTokenIfAuth0Login()
-    }, [isAuthenticated]);
 
 
     useEffect(() => {
         dispatch(fetchProfile())
-    }, [isAuth0, isAuth, isAuthenticated]);
+    }, [canIGetProfile]);
 
 
     return (

@@ -1,0 +1,42 @@
+.visible_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.visible_container_text {
+    display: flex;
+    align-items: center;
+    text-align: start;
+    font-size: 12px;
+    color: teal;
+}
+
+.visible_container_form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+    flex-direction: column;
+}
+
+.visible_container_form > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.visible_container_form > div > span {
+    color: teal;
+    font-size: 18px;
+}
+
+.visible_container_input {
+    width: 30px;
+    height: 30px;
+}

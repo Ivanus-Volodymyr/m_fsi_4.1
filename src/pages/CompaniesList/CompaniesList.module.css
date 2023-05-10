@@ -1,3 +1,17 @@
 .companies_list_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
 
+hr {
+    width: 90%;
+    color: teal;
+    height: 1px;
+}
+
+.companies_list_container > div {
+    width: 90%;
+    padding: 20px 0;
 }

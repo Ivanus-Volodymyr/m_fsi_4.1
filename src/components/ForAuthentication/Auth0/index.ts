@@ -1,2 +1,2 @@
 export * from './Auth0Login/Auth0Login';
-export * from './AuthoLogout/Logout';
+export * from './Logout/Logout';

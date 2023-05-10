@@ -2,10 +2,17 @@ import React from 'react';
 
 import css from './CompaniesList.module.css';
 
-const CompaniesList = () => {
+import {Companies, CreateCompany} from "../../components/ForCompaniesListPage";
+
+const CompaniesList: React.FC = () => {
+
     return (
         <div className={css.companies_list_container}>
-            <h1>Companies List Page</h1>
+            <div>
+                <CreateCompany/>
+            </div>
+            <hr/>
+            <Companies/>
         </div>
     );
 };

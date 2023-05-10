@@ -16,7 +16,3 @@ export const passwordUpdateValidator = Joi.object({
         .max(40)
         .required(),
 });
-
-const avatarValidator = Joi.object({
-    file: Joi.required(),
-})

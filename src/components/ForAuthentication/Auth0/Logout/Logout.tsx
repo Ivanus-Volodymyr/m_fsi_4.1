@@ -5,16 +5,16 @@ import {useDispatch} from "react-redux";
 import {Button} from "../../../GeneralComponnents";
 import {logoutActionCreator} from "../../../../store/reducers";
 
-const Logout = () => {
+const Logout: React.FC = () => {
     const {isAuthenticated, logout} = useAuth0();
     const dispatch = useDispatch();
 
     const authLogout = async () => {
+        localStorage.removeItem('access_token');
         dispatch(logoutActionCreator())
         if (isAuthenticated) {
             logout();
         }
-        localStorage.removeItem('access_token');
     }
 
     return (

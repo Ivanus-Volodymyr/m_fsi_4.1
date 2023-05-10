@@ -10,10 +10,11 @@ import {Button, Form, Input} from "../../components";
 import {FormValues, loginSchema} from "../../validators";
 import {Auth0Login} from "../../components/ForAuthentication";
 import {useAppSelector} from "../../hooks/useAppSelector";
-import {fetchLogin, fetchProfile} from "../../store/action-creators";
+import {fetchLogin} from "../../store/action-creators";
+import {canGetProfile} from "../../store/reducers";
 
 
-const Authentication = () => {
+const Authentication: React.FC = () => {
     const {loading_login, access_token, error_login} = useAppSelector(state => state.login);
 
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Authentication = () => {
 
     useEffect(() => {
         if ((!loading_login) && access_token) {
-            dispatch(fetchProfile());
+            dispatch(canGetProfile());
         }
     }, [loading_login, access_token, error_login]);
 
