@@ -34,19 +34,15 @@ const CreateCompany: React.FC = () => {
 
 
     const createNewCompany = (company: ICompanyDataToCreate) => {
+        dispatch(clearCompanyState());
         dispatch(createOneCompany(company));
         reset();
-    }
-
-    const modalOpen = async () => {
-        dispatch(clearCompanyState());
-        setActive(!active)
     }
 
     return (
         <div className={css.create_company_container}>
             <div>
-                <Button onClick={() => modalOpen()}>Create new Company</Button>
+                <Button onClick={() => setActive(true)}>Create new Company</Button>
             </div>
 
             <Modal activeModal={active} setActive={setActive}>
