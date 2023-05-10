@@ -1,9 +1,11 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import {useDispatch} from "react-redux";
 
 import {Button, Form, Input} from "../../../GeneralComponnents";
 import {ICompanyDetails} from "../../../../types";
-import {useDispatch} from "react-redux";
+import {updateGeneralInfo} from "../../../../store/action-creators";
+import {useAppSelector} from "../../../../hooks/useAppSelector";
 
 
 interface UpdateCompanyGeneralInformationProps {
@@ -11,6 +13,8 @@ interface UpdateCompanyGeneralInformationProps {
 }
 
 const UpdateCompanyGeneralInformation: React.FC<UpdateCompanyGeneralInformationProps> = ({company}) => {
+    const {oneCompanyLoading, oneCompanyError} = useAppSelector(state => state.companies);
+
     const {
         handleSubmit,
         register,
@@ -28,8 +32,8 @@ const UpdateCompanyGeneralInformation: React.FC<UpdateCompanyGeneralInformationP
             company_city: formData.company_city ? formData.company_city : company?.company_city,
             company_phone: formData.company_phone ? formData.company_phone : company?.company_phone,
         }
-
-        dispatch({})
+        dispatch(updateGeneralInfo(dataToUpdate, Number(company?.company_id)));
+        reset();
     }
 
     return (
@@ -39,7 +43,9 @@ const UpdateCompanyGeneralInformation: React.FC<UpdateCompanyGeneralInformationP
             <Input type={"text"} placeholder={'Company Description'} {...register('company_description')}/>
             <Input type={"text"} placeholder={'Company City'} {...register('company_city')}/>
             <Input type={"text"} placeholder={'Company Phone'} {...register('company_phone')}/>
-            <Button>Update general information</Button>
+            {oneCompanyLoading ? <h4>Updating in process ....</h4> : <Button>Update general information</Button>}
+
+            <div>{oneCompanyError}</div>
         </Form>
     );
 };

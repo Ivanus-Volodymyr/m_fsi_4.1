@@ -7,7 +7,9 @@ import {
     DeleteCompanyResponse,
     GetAllCompaniesResponse,
     GetOneCompanyResponse,
-    ICompanyDataToCreate
+    ICompanyDataToCreate,
+    ICompanyDetails,
+    UpdateCompanyResponse
 } from "../types";
 
 export const companiesService = {
@@ -22,6 +24,23 @@ export const companiesService = {
 
     //create
     createCompany: (companyData: ICompanyDataToCreate) => axiosService.post<CreateOneCompanyResponse>(urls.company, companyData),
+
+
+    //update
+    updateGeneralInfo: (
+        companyData: Partial<ICompanyDetails>,
+        companyId: number
+    ) => axiosService.put<UpdateCompanyResponse>(urls.company + `${companyId}/update_info`, companyData),
+
+    updateIsVisible: (
+        isVisible: Partial<ICompanyDetails>,
+        companyId: number,
+    ) => axiosService.put<UpdateCompanyResponse>(urls.company + `${companyId}/update_visible`, isVisible),
+
+    updateAvatar: (
+        formaData: FormData,
+        companyId: number,
+    ) => axiosService.put<UpdateCompanyResponse>(urls.company + `${companyId}/update_avatar`, formaData),
 
 
     //delete

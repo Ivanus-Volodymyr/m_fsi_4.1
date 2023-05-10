@@ -59,7 +59,6 @@ export const companiesReducer = (state: ICompaniesInitialState = InitialState, a
                 ...state,
                 oneCompanyLoading: true,
                 oneCompanyId: null,
-                oneCompany: null,
                 isUpdatedCompany: false,
                 oneCompanyError: null
             }

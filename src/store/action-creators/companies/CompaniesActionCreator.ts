@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 
-import {CompaniesAction, CompaniesType, ICompanyDataToCreate} from "../../../types";
+import {CompaniesAction, CompaniesType, ICompanyDataToCreate, ICompanyDetails} from "../../../types";
 import {companiesService} from "../../../services/companiesService";
 
 export const fetchAllCompanies = (page: number) => {
@@ -49,6 +49,59 @@ export const createOneCompany = (companyData: ICompanyDataToCreate) => {
                 type: CompaniesAction.CREATE_COMPANY_ERROR,
                 payload: e.response.data.detail,
             })
+        }
+    }
+}
+
+
+export const updateGeneralInfo = (dataToUpdate: Partial<ICompanyDetails>, companyId: number) => {
+    return async (dispatch: Dispatch<CompaniesType>): Promise<void> => {
+        try {
+            dispatch({type: CompaniesAction.UPDATE_COMPANY});
+            const {data} = await companiesService.updateGeneralInfo(dataToUpdate, companyId);
+            if (data.detail === 'ok') {
+                dispatch({type: CompaniesAction.UPDATE_COMPANY_SUCCESS, payload: data.result.company_id});
+            }
+        } catch (e: any) {
+            dispatch({
+                type: CompaniesAction.UPDATE_COMPANY_ERROR,
+                payload: e.response.data.detail,
+            })
+        }
+    }
+}
+
+export const updateVisible = (dataToUpdate: Partial<ICompanyDetails>, companyId: number) => {
+    return async (dispatch: Dispatch<CompaniesType>): Promise<void> => {
+        try {
+            dispatch({type: CompaniesAction.UPDATE_COMPANY});
+            const {data} = await companiesService.updateIsVisible(dataToUpdate, companyId);
+            if (data.detail === 'ok') {
+                dispatch({type: CompaniesAction.UPDATE_COMPANY_SUCCESS, payload: data.result.company_id});
+            }
+        } catch (e: any) {
+            dispatch({
+                type: CompaniesAction.UPDATE_COMPANY_ERROR,
+                payload: e.response.data.detail,
+            });
+        }
+    }
+}
+
+
+export const updateAvatar = (dataToUpdate: FormData, companyId: number) => {
+    return async (dispatch: Dispatch<CompaniesType>): Promise<void> => {
+        try {
+            dispatch({type: CompaniesAction.UPDATE_COMPANY});
+            const {data} = await companiesService.updateAvatar(dataToUpdate, companyId);
+            if (data.detail === 'ok') {
+                dispatch({type: CompaniesAction.UPDATE_COMPANY_SUCCESS, payload: companyId});
+            }
+        } catch (e: any) {
+            dispatch({
+                type: CompaniesAction.UPDATE_COMPANY_ERROR,
+                payload: e.response.data.detail,
+            });
         }
     }
 }

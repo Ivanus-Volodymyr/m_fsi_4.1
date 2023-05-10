@@ -7,7 +7,11 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import {deleteCompany, fetchOneCompany} from "../../store/action-creators";
 import {Button, Modal} from "../../components";
 import {CreateCompany} from "../../components/ForCompaniesListPage";
-import {UpdateCompanyGeneralInformation} from "../../components/ForCompanyProfilePage";
+import {
+    UpdateCompanyAvatar,
+    UpdateCompanyGeneralInformation,
+    UpdateCompanyVisible
+} from "../../components/ForCompanyProfilePage";
 import {clearCompanyState} from "../../store/reducers/companiesReducer";
 
 const CompanyProfile: React.FC = () => {
@@ -17,6 +21,8 @@ const CompanyProfile: React.FC = () => {
         oneCompany,
         oneCompanyLoading,
         isDeletedCompany,
+        oneCompanyId,
+        isUpdatedCompany,
     } = useAppSelector(state => state.companies);
 
     const dispatch = useDispatch();
@@ -29,6 +35,7 @@ const CompanyProfile: React.FC = () => {
 
 
     useEffect(() => {
+        dispatch(clearCompanyState());
         dispatch(fetchOneCompany(Number(id)));
     }, [id]);
 
@@ -44,6 +51,20 @@ const CompanyProfile: React.FC = () => {
         }
     }, [isDeletedCompany]);
 
+
+    useEffect(() => {
+        if (oneCompanyId && isUpdatedCompany) {
+            setStatus('Company successfully updated!')
+            setTimeout(() => {
+                setStatus('');
+                setUpdate(false)
+                dispatch(clearCompanyState());
+                dispatch(fetchOneCompany(oneCompanyId));
+            }, 3000)
+        }
+    }, [oneCompanyId, isUpdatedCompany]);
+
+
     const deleteCompanyById = () => {
         dispatch(deleteCompany(Number(oneCompany?.company_id)));
     }
@@ -57,6 +78,7 @@ const CompanyProfile: React.FC = () => {
 
                     <div className={css.company_detail_block_header}>
                         <div>Company: {oneCompany?.company_name}</div>
+                        <div>{status}</div>
                         {oneCompany?.company_owner.user_id === user?.user_id &&
                             <Button onClick={() => setModal(true)}>Delete this Company</Button>}
                     </div>
@@ -104,14 +126,17 @@ const CompanyProfile: React.FC = () => {
                                     </div>
                                     <div>
                                         <span>Update Visible</span>
+                                        <UpdateCompanyVisible company={oneCompany}/>
                                     </div>
                                     <div>
                                         <span>Update Avatar</span>
+                                        <UpdateCompanyAvatar company={oneCompany}/>
                                     </div>
                                 </div> :
                                 <div className={css.company_information}>
                                     <div>ID: {oneCompany?.company_id ? oneCompany?.company_id : "None"}</div>
                                     <div>Name: {oneCompany?.company_name ? oneCompany?.company_name : 'None'}</div>
+                                    <div>Title: {oneCompany?.company_title ? oneCompany?.company_title : 'None'}</div>
                                     <div>Description: {oneCompany?.company_description ? oneCompany?.company_description : 'None'}</div>
                                     <div>City: {oneCompany?.company_city ? oneCompany.company_city : "None"}</div>
                                     <div>Owner: {oneCompany?.company_owner.user_firstname ? oneCompany?.company_owner.user_firstname : "None"}</div>
