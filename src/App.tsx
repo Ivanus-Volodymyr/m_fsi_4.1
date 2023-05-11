@@ -2,7 +2,15 @@ import React, {useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
-import {Layout, ProtectedRoute, ToUnauthorizedUsers} from "./components";
+import {
+    CompanyInvites,
+    CompanyProfileLayout,
+    CompanyProfileMembers,
+    CompanyRequests,
+    Layout,
+    ProtectedRoute,
+    ToUnauthorizedUsers
+} from "./components";
 
 import {
     About,
@@ -46,7 +54,13 @@ const App = () => {
 
                     <Route element={<ProtectedRoute user={user} redirectPath={'/auth'}/>}>
                         <Route path={'/companies-list'} element={<CompaniesList/>}/>
-                        <Route path={'/company-profile/:id'} element={<CompanyProfile/>}/>
+                        <Route path={'/company-profile/:id'} element={<CompanyProfileLayout/>}>
+                            <Route path={'/company-profile/:id/'} index element={<CompanyProfile/>}/>
+                            <Route path={'/company-profile/:id/members-list/'} element={<CompanyProfileMembers/>}/>
+                            <Route path={'/company-profile/:id/invites-list/'} element={<CompanyInvites/>}/>
+                            <Route path={'/company-profile/:id/requests-list/'} element={<CompanyRequests/>}/>
+                        </Route>
+
                         <Route path={'/users-list'} element={<UsersListPage/>}/>
                         <Route path={'/user-profile/:id'} element={<UserProfile/>}/>
                     </Route>

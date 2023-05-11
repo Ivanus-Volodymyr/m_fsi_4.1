@@ -24,7 +24,7 @@ export const urls = {
     companies: '/companies/',
     company: '/company/',
 
-    //action
+    //actions
     action: '/action/'
 
 }
