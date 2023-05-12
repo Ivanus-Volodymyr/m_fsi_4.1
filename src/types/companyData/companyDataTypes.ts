@@ -1,7 +1,7 @@
 import {GeneralResponse} from "../response/responseTypes";
 import {IProfile} from "../profile/profileTypes";
 
-interface CompanyUsers extends IProfile {
+export interface CompanyUsers extends IProfile {
     action_id: number,
     action: string;
 }

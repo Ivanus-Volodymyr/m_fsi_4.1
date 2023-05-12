@@ -27,6 +27,8 @@ const CompanyProfile: React.FC = () => {
         isUpdatedCompany,
         oneCompanyError,
     } = useAppSelector(state => state.companies);
+    const {detail, error} = useAppSelector(state => state.action);
+
 
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -68,6 +70,14 @@ const CompanyProfile: React.FC = () => {
     }, [oneCompanyId, isUpdatedCompany]);
 
 
+    useEffect(() => {
+        if (detail || error) {
+            setModal(true);
+            setTimeout(() => setModal(false), 2000);
+        }
+    }, [detail, error])
+
+
     const deleteCompanyById = () => {
         dispatch(deleteCompany(Number(oneCompany?.company_id)));
     }
@@ -105,6 +115,11 @@ const CompanyProfile: React.FC = () => {
                                 </div>
                             }
                         </div>
+                    </Modal>
+
+
+                    <Modal activeModal={modal} setActive={setModal}>
+                        {detail ? <h1>Request has been sent</h1> : <h1>{error}</h1>}
                     </Modal>
 
 
@@ -149,7 +164,7 @@ const CompanyProfile: React.FC = () => {
                                     <div>Description: {oneCompany?.company_description ? oneCompany?.company_description : 'None'}</div>
                                     <div>City: {oneCompany?.company_city ? oneCompany.company_city : "None"}</div>
                                     <div>Owner: {oneCompany?.company_owner.user_firstname ?
-                                        `${oneCompany.company_owner.user_firstname}with id - ${oneCompany?.company_owner.user_id}`
+                                        `${oneCompany.company_owner.user_firstname} with id - ${oneCompany?.company_owner.user_id}`
                                         : "None"}
                                     </div>
                                     <div>Is Visible?: {oneCompany?.is_visible ? "Yes" : "No"}</div>

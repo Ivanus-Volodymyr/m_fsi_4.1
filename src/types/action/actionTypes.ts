@@ -13,6 +13,7 @@ export interface IActionLeaveCompanyDeclineActionResponse extends GeneralRespons
 export interface IActionInitialState {
     isLeavedAction: string | null,
     isDeclinedAction: string | null,
+    detail: string | null,
     loading: boolean,
     error: string | null,
     actionId: number | null,
@@ -31,6 +32,8 @@ export enum Action {
     DECLINE_ACTION = 'DECLINE_ACTION',
     DECLINE_ACTION_SUCCESS = 'DECLINE_ACTION_SUCCESS',
     DECLINE_ACTION_ERROR = 'DECLINE_ACTION_ERROR',
+
+    CLEAR_ACTION = 'CLEAR_ACTION',
 }
 
 interface FetchAction {
@@ -39,7 +42,10 @@ interface FetchAction {
 
 interface FetchActionSuccess {
     type: Action.FETCH_ACTION_SUCCES,
-    payload: number,
+    payload: {
+        actionId: number
+        detail: string,
+    },
 }
 
 interface FetchActionError {
@@ -76,6 +82,10 @@ interface DeclineActionError {
     payload: string,
 }
 
+interface ClearAction {
+    type: Action.CLEAR_ACTION,
+}
+
 
 export type ActionType =
     | FetchAction
@@ -87,3 +97,4 @@ export type ActionType =
     | DeclineAction
     | DeclineActionSuccess
     | DeclineActionError
+    | ClearAction

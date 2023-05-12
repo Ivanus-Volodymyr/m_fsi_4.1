@@ -19,5 +19,5 @@ export const actionService = {
     removeFromAdmin: (actionId: number) => axiosService.get<IActionResponse>(urls.action + `${actionId}/remove_from_admin/`),
     addToBlock: (actionId: number) => axiosService.get<IActionResponse>(urls.action + `${actionId}/add_to_block/`),
     removeFromBlock: (actionId: number) => axiosService.get<IActionResponse>(urls.action + `${actionId}/remove_from_block/`),
-    leaveFromBlock: (actionId: number) => axiosService.get<IActionLeaveCompanyDeclineActionResponse>(urls.action + `${actionId}/leave_company/`),
+    leaveCompany: (actionId: number) => axiosService.get<IActionLeaveCompanyDeclineActionResponse>(urls.action + `${actionId}/leave_company/`),
 }
