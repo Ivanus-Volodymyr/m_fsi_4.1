@@ -1,0 +1,47 @@
+.user_companies_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 100%;
+    padding: 20px 10px;
+}
+
+.user_companies_header {
+    font-size: 20px;
+    color: teal;
+    font-weight: bold;
+}
+
+.user_companies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    margin: 20px 0;
+    width: 90%;
+}
+
+.go_leave {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.modal > h1 {
+    color: teal;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+}

@@ -4,12 +4,17 @@ import {useDispatch} from "react-redux";
 
 import {
     CompanyInvites,
+    CompanyInviteUser,
     CompanyProfileLayout,
     CompanyProfileMembers,
     CompanyRequests,
     Layout,
     ProtectedRoute,
-    ToUnauthorizedUsers
+    ToUnauthorizedUsers,
+    UserCompanies,
+    UserInvites,
+    UserProfileLayout,
+    UserRequests
 } from "./components";
 
 import {
@@ -54,15 +59,21 @@ const App = () => {
 
                     <Route element={<ProtectedRoute user={user} redirectPath={'/auth'}/>}>
                         <Route path={'/companies-list'} element={<CompaniesList/>}/>
-                        <Route path={'/company-profile/:id'} element={<CompanyProfileLayout/>}>
+                        <Route path={'/company-profile/'} element={<CompanyProfileLayout/>}>
                             <Route path={'/company-profile/:id/'} index element={<CompanyProfile/>}/>
                             <Route path={'/company-profile/:id/members-list/'} element={<CompanyProfileMembers/>}/>
                             <Route path={'/company-profile/:id/invites-list/'} element={<CompanyInvites/>}/>
+                            <Route path={'/company-profile/:id/invite-user/'} element={<CompanyInviteUser/>}/>
                             <Route path={'/company-profile/:id/requests-list/'} element={<CompanyRequests/>}/>
                         </Route>
 
                         <Route path={'/users-list'} element={<UsersListPage/>}/>
-                        <Route path={'/user-profile/:id'} element={<UserProfile/>}/>
+                        <Route path={'/user-profile/'} element={<UserProfileLayout/>}>
+                            <Route path={'/user-profile/:id'} index element={<UserProfile/>}/>
+                            <Route path={'/user-profile/:id/companies-list'} index element={<UserCompanies/>}/>
+                            <Route path={'/user-profile/:id/requests-list'} index element={<UserRequests/>}/>
+                            <Route path={'/user-profile/:id/invites-list'} index element={<UserInvites/>}/>
+                        </Route>
                     </Route>
 
                     <Route path="*" element={<h1>There's nothing here: 404!</h1>}/>

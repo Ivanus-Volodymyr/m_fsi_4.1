@@ -7,3 +7,4 @@ export * from './authReducer';
 export * from './companiesReducer';
 export * from './companyDataReducer';
 export * from './actionReducer';
+export * from './userDataReducer';

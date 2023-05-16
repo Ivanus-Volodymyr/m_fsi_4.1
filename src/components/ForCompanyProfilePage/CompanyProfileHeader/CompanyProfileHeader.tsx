@@ -23,14 +23,21 @@ const CompanyProfileHeader: React.FC = () => {
                         Company Members
                     </NavLink>
 
-                    <NavLink to={`/company-profile/${oneCompany?.company_id}/invites-list/`}
-                             className={({isActive}) => isActive ? `${css.active}` : ''}>
-                        Company Invites
-                    </NavLink>
                     <NavLink to={`/company-profile/${oneCompany?.company_id}/requests-list/`}
                              className={({isActive}) => isActive ? `${css.active}` : ''}>
                         Company Requests
                     </NavLink>
+
+                    <NavLink to={`/company-profile/${oneCompany?.company_id}/invites-list/`}
+                             className={({isActive}) => isActive ? `${css.active}` : ''}>
+                        Company Invites
+                    </NavLink>
+
+                    <NavLink to={`/company-profile/${oneCompany?.company_id}/invite-user/`}
+                             className={({isActive}) => isActive ? `${css.active}` : ''}>
+                        Invite users
+                    </NavLink>
+
                 </>
             }
 

@@ -9,3 +9,4 @@ export * from './companies/companiesTypes';
 export * from './response/responseTypes';
 export * from './companyData/companyDataTypes';
 export * from './action/actionTypes';
+export * from './userData/userDataTypes';

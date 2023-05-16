@@ -12,7 +12,7 @@ import {
     addToAdminList,
     leaveCompany,
     removeFromAdmin
-} from "../../../store/action-creators/actions/actionsActionCreator";
+} from "../../../store/action-creators";
 import {CompanyUsers} from "../../../types";
 
 const CompanyProfileMembers: React.FC = () => {

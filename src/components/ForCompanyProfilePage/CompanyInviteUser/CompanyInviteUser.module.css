@@ -1,20 +1,20 @@
-.company_invites_container {
+.company_invite_user {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 90%;
+
 }
 
-.company_invites_container > h2 {
+.company_invite_user > h2 {
     font-size: 22px;
     color: teal;
 }
 
-.company_invite {
-    width: 80%;
+.send_invite_block {
+    width: 90%;
     margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .modal {

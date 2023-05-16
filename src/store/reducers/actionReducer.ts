@@ -55,3 +55,6 @@ export const actionReducer = (state: IActionInitialState = ActionInitialState, a
             return state;
     }
 }
+
+
+export const clearActionReducer = () => ({type: Action.CLEAR_ACTION});

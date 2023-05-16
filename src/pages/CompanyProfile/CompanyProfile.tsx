@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 
 import css from './CompanyProfile.module.css';
+
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {deleteCompany, fetchOneCompany} from "../../store/action-creators";
 import {
@@ -13,8 +14,8 @@ import {
     UpdateCompanyVisible
 } from "../../components";
 import {CreateCompany} from "../../components/ForCompaniesListPage";
-import {clearCompanyState} from "../../store/reducers";
-import {createRequestFromUserToCompany} from "../../store/action-creators/actions/actionsActionCreator";
+import {clearActionReducer, clearCompanyState} from "../../store/reducers";
+import {createRequestFromUserToCompany} from "../../store/action-creators";
 
 const CompanyProfile: React.FC = () => {
     const {user} = useAppSelector(state => state.profile);
@@ -27,6 +28,7 @@ const CompanyProfile: React.FC = () => {
         isUpdatedCompany,
         oneCompanyError,
     } = useAppSelector(state => state.companies);
+
     const {detail, error} = useAppSelector(state => state.action);
 
 
@@ -73,7 +75,10 @@ const CompanyProfile: React.FC = () => {
     useEffect(() => {
         if (detail || error) {
             setModal(true);
-            setTimeout(() => setModal(false), 2000);
+            setTimeout(() => {
+                setModal(false)
+                dispatch(clearActionReducer());
+            }, 2000);
         }
     }, [detail, error])
 

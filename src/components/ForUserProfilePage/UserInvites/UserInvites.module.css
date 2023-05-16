@@ -1,0 +1,49 @@
+.user_invites {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 90%;
+    padding: 20px;
+}
+
+.user_invites_header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: teal;
+}
+
+.user_invites_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 90%;
+}
+
+.accept_reject_invite {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.modal > h1 {
+    color: teal;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+}

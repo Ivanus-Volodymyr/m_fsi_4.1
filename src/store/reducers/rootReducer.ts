@@ -8,6 +8,7 @@ import {loginReducer, registrationReducer} from "./authReducer";
 import {companiesReducer} from "./companiesReducer";
 import {companyDataReducer} from "./companyDataReducer";
 import {actionReducer} from "./actionReducer";
+import {userDataReducer} from "./userDataReducer";
 
 export const rootReducer = combineReducers({
     counter: counterReducer,
@@ -18,6 +19,7 @@ export const rootReducer = combineReducers({
     login: loginReducer,
     companies: companiesReducer,
     companyData: companyDataReducer,
+    userData: userDataReducer,
     action: actionReducer,
 })
 
