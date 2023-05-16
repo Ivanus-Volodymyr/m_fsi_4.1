@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
 import {
+    BlockedUsers,
     CompanyInvites,
     CompanyInviteUser,
     CompanyProfileLayout,
@@ -65,6 +66,7 @@ const App = () => {
                             <Route path={'/company-profile/:id/invites-list/'} element={<CompanyInvites/>}/>
                             <Route path={'/company-profile/:id/invite-user/'} element={<CompanyInviteUser/>}/>
                             <Route path={'/company-profile/:id/requests-list/'} element={<CompanyRequests/>}/>
+                            <Route path={'/company-profile/:id/blocked-list/'} element={<BlockedUsers/>}/>
                         </Route>
 
                         <Route path={'/users-list'} element={<UsersListPage/>}/>

@@ -17,6 +17,7 @@ export interface ICompanyDataInitialState {
     members: CompanyUsers[] | [],
     invites: CompanyUsers[] | [],
     requests: CompanyUsers[] | [],
+    blockedUsers: CompanyUsers[] | [],
     loading: boolean,
     error: string | null,
 }
@@ -37,6 +38,11 @@ export enum CompanyDataAction {
     FETCH_REQUESTS = 'FETCH_REQUESTS',
     FETCH_REQUESTS_SUCCESS = 'FETCH_REQUESTS_SUCCESS',
     FETCH_REQUESTS_ERROR = 'FETCH_REQUESTS_ERROR',
+
+    //blockedUsers
+    FETCH_BLOCKED_USERS = 'FETCH_BLOCKED_USERS',
+    FETCH_BLOCKED_USERS_SUCCES = 'FETCH_BLOCKED_USERS_SUCCES',
+    FETCH_BLOCKED_USERS_ERROR = 'FETCH_BLOCKED_USERS_ERROR',
 }
 
 interface FetchMembers {
@@ -81,6 +87,20 @@ interface FetchRequestsError {
     payload: string,
 }
 
+interface FetchBlockedUsers {
+    type: CompanyDataAction.FETCH_BLOCKED_USERS,
+}
+
+interface FetchBlockedUsersSuccess {
+    type: CompanyDataAction.FETCH_BLOCKED_USERS_SUCCES,
+    payload: CompanyUsers[],
+}
+
+interface FetchBlockedUsersError {
+    type: CompanyDataAction.FETCH_BLOCKED_USERS_ERROR,
+    payload: string,
+}
+
 export type CompaniesDataType =
     | FetchMembers
     | FetchMembersSuccess
@@ -91,3 +111,6 @@ export type CompaniesDataType =
     | FetchRequests
     | FetchRequestsSuccess
     | FetchRequestsError
+    | FetchBlockedUsers
+    | FetchBlockedUsersSuccess
+    | FetchBlockedUsersError

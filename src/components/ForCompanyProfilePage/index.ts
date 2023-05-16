@@ -5,3 +5,4 @@ export * from './CompanyProfileMembers/CompanyProfileMembers';
 export * from './CompanyInvites/CompanyInvites';
 export * from './CompanyRequests/CompanyRequests';
 export * from './CompanyInviteUser/CompanyInviteUser';
+export * from './BlockedUsers/BlockedUsers';

@@ -113,7 +113,7 @@ export const addToAdminList = (actionId: number) => {
             })
         } catch (e: any) {
             dispatch({
-                type: Action.DECLINE_ACTION_ERROR,
+                type: Action.FETCH_ACTION_ERROR,
                 payload: e.response.data.detail,
             })
         }
@@ -150,6 +150,47 @@ export const leaveCompany = (actionId: number) => {
         } catch (e: any) {
             dispatch({
                 type: Action.LEAVE_ACTION_ERROR,
+                payload: e.response.data.detail,
+            })
+        }
+    }
+}
+
+
+export const addUserToBlock = (actionId: number) => {
+    return async (dispatch: Dispatch<ActionType>): Promise<void> => {
+        try {
+            dispatch({type: Action.FETCH_ACTION});
+            const {data} = await actionService.addToBlock(actionId);
+            dispatch({
+                type: Action.FETCH_ACTION_SUCCES, payload: {
+                    actionId: data.result.action_id,
+                    detail: data.detail
+                }
+            })
+        } catch (e: any) {
+            dispatch({
+                type: Action.FETCH_ACTION_ERROR,
+                payload: e.response.data.detail,
+            })
+        }
+    }
+}
+
+export const removeUserFromBlock = (actionId: number) => {
+    return async (dispatch: Dispatch<ActionType>): Promise<void> => {
+        try {
+            dispatch({type: Action.FETCH_ACTION});
+            const {data} = await actionService.removeFromBlock(actionId);
+            dispatch({
+                type: Action.FETCH_ACTION_SUCCES, payload: {
+                    actionId: data.result.action_id,
+                    detail: data.detail
+                }
+            })
+        } catch (e: any) {
+            dispatch({
+                type: Action.FETCH_ACTION_ERROR,
                 payload: e.response.data.detail,
             })
         }

@@ -4,6 +4,7 @@ const CompanyDataInitialState: ICompanyDataInitialState = {
     members: [],
     invites: [],
     requests: [],
+    blockedUsers: [],
     loading: false,
     error: null,
 }
@@ -30,6 +31,13 @@ export const companyDataReducer = (state: ICompanyDataInitialState = CompanyData
             return {...state, loading: false, requests: action.payload, error: null}
         case CompanyDataAction.FETCH_REQUESTS_ERROR:
             return {...state, loading: false, requests: [], error: action.payload}
+
+        case CompanyDataAction.FETCH_BLOCKED_USERS:
+            return {...state, loading: true, blockedUsers: [], error: null}
+        case CompanyDataAction.FETCH_BLOCKED_USERS_SUCCES:
+            return {...state, loading: false, blockedUsers: action.payload, error: null}
+        case CompanyDataAction.FETCH_BLOCKED_USERS_ERROR:
+            return {...state, loading: false, blockedUsers: [], error: action.payload}
 
         default:
             return state

@@ -5,14 +5,15 @@ import {useParams} from "react-router-dom";
 import css from './CompanyProfileMembers.module.css';
 
 import {useAppSelector} from "../../../hooks/useAppSelector";
-import {fetchMembers} from "../../../store/action-creators";
-import {CompanyAction} from "../CompanyAction/CompanyAction";
-import {Button, Modal} from "../../GeneralComponnents";
 import {
     addToAdminList,
+    addUserToBlock,
+    fetchMembers,
     leaveCompany,
     removeFromAdmin
 } from "../../../store/action-creators";
+import {CompanyAction} from "../CompanyAction/CompanyAction";
+import {Button, Modal} from "../../GeneralComponnents";
 import {CompanyUsers} from "../../../types";
 
 const CompanyProfileMembers: React.FC = () => {
@@ -27,6 +28,7 @@ const CompanyProfileMembers: React.FC = () => {
     const [addToAdmin, setAddToAdmin] = useState<boolean>(false);
     const [removeAdminRole, setRemoveAdminRole] = useState<boolean>(false);
     const [deleteUser, setDeleteUser] = useState<boolean>(false);
+    const [block, setBlock] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -70,6 +72,13 @@ const CompanyProfileMembers: React.FC = () => {
                                         }>
                                             Remove a user from the company
                                         </Button>
+
+                                        <Button
+                                            onClick={() => {
+                                                setValue(member);
+                                                setBlock(true);
+                                            }}
+                                        >Add user to block</Button>
                                     </>
                                 }
                             </div>
@@ -125,6 +134,27 @@ const CompanyProfileMembers: React.FC = () => {
 
                     <Button onClick={() => setDeleteUser(false)}>Cancel</Button>
                 </div>
+            </Modal>
+
+            <Modal activeModal={block} setActive={setBlock}>
+                {value?.action !== 'admin' ?
+                    <div className={css.modal}>
+                        <h1>You are about to add this user {value?.user_firstname} to block list.
+                            Confirm your action? </h1>
+                        <Button onClick={() => {
+                            dispatch(addUserToBlock(Number(value?.action_id)));
+                            setValue(null);
+                            setBlock(false);
+                        }}>Add user to block
+                        </Button>
+
+                        <Button onClick={() => setBlock(false)}>Cancel</Button>
+                    </div> :
+                    <div className={css.modal}>
+                        <h1>This user is the administrator. First, remove administrator rights for this user</h1>
+                        <Button onClick={() => setBlock(false)}>I understand</Button>
+                    </div>
+                }
             </Modal>
 
 

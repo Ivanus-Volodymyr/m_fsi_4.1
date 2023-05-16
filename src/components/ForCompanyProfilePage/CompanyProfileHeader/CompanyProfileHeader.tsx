@@ -38,6 +38,11 @@ const CompanyProfileHeader: React.FC = () => {
                         Invite users
                     </NavLink>
 
+                    <NavLink to={`/company-profile/${oneCompany?.company_id}/blocked-list/`}
+                             className={({isActive}) => isActive ? `${css.active}` : ''}>
+                        Blocked users
+                    </NavLink>
+
                 </>
             }
 

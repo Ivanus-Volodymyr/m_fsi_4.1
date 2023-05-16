@@ -49,3 +49,19 @@ export const fetchRequests = (companyId: number) => {
         }
     }
 }
+
+
+export const fetchBlockedUsers = (companyId: number) => {
+    return async (dispatch: Dispatch<CompaniesDataType>): Promise<void> => {
+        try {
+            dispatch({type: CompanyDataAction.FETCH_BLOCKED_USERS});
+            const {data} = await companyDataService.blockedUsersList(companyId);
+            dispatch({type: CompanyDataAction.FETCH_BLOCKED_USERS_SUCCES, payload: data.result.users});
+        } catch (e: any) {
+            dispatch({
+                type: CompanyDataAction.FETCH_BLOCKED_USERS_ERROR,
+                payload: e.response.dara.detail,
+            })
+        }
+    }
+}
