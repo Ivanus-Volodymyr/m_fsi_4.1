@@ -22,6 +22,9 @@ export const urls = {
 
     //companies
     companies: '/companies/',
-    company: '/company/'
+    company: '/company/',
+
+    //actions
+    action: '/action/'
 
 }

@@ -3,16 +3,19 @@ import {useDispatch} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 
 import css from './CompanyProfile.module.css';
+
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {deleteCompany, fetchOneCompany} from "../../store/action-creators";
-import {Button, Modal} from "../../components";
-import {CreateCompany} from "../../components/ForCompaniesListPage";
 import {
+    Button,
+    Modal,
     UpdateCompanyAvatar,
     UpdateCompanyGeneralInformation,
     UpdateCompanyVisible
-} from "../../components/ForCompanyProfilePage";
-import {clearCompanyState} from "../../store/reducers/companiesReducer";
+} from "../../components";
+import {CreateCompany} from "../../components/ForCompaniesListPage";
+import {clearActionReducer, clearCompanyState} from "../../store/reducers";
+import {createRequestFromUserToCompany} from "../../store/action-creators";
 
 const CompanyProfile: React.FC = () => {
     const {user} = useAppSelector(state => state.profile);
@@ -23,7 +26,11 @@ const CompanyProfile: React.FC = () => {
         isDeletedCompany,
         oneCompanyId,
         isUpdatedCompany,
+        oneCompanyError,
     } = useAppSelector(state => state.companies);
+
+    const {detail, error} = useAppSelector(state => state.action);
+
 
     const dispatch = useDispatch();
     const {id} = useParams();
@@ -65,6 +72,17 @@ const CompanyProfile: React.FC = () => {
     }, [oneCompanyId, isUpdatedCompany]);
 
 
+    useEffect(() => {
+        if (detail || error) {
+            setModal(true);
+            setTimeout(() => {
+                setModal(false)
+                dispatch(clearActionReducer());
+            }, 2000);
+        }
+    }, [detail, error])
+
+
     const deleteCompanyById = () => {
         dispatch(deleteCompany(Number(oneCompany?.company_id)));
     }
@@ -98,9 +116,15 @@ const CompanyProfile: React.FC = () => {
                                             <Button onClick={() => setModal(false)}><h2>No!</h2></Button>
                                         </div>
                                     }
+                                    {oneCompanyError}
                                 </div>
                             }
                         </div>
+                    </Modal>
+
+
+                    <Modal activeModal={modal} setActive={setModal}>
+                        {detail ? <h1>Request has been sent</h1> : <h1>{error}</h1>}
                     </Modal>
 
 
@@ -108,6 +132,11 @@ const CompanyProfile: React.FC = () => {
                         <div className={css.company_avatar}>
                             <img src={oneCompany?.company_avatar ? oneCompany.company_avatar : ''}
                                  alt="company_avatar"/>
+                            {oneCompany?.company_owner.user_id !== user?.user_id &&
+                                <Button
+                                    onClick={() => dispatch(createRequestFromUserToCompany(Number(oneCompany?.company_id)))}>
+                                    Send request to become a member
+                                </Button>}
                         </div>
 
                         <div className={css.company_info}>
@@ -139,8 +168,12 @@ const CompanyProfile: React.FC = () => {
                                     <div>Title: {oneCompany?.company_title ? oneCompany?.company_title : 'None'}</div>
                                     <div>Description: {oneCompany?.company_description ? oneCompany?.company_description : 'None'}</div>
                                     <div>City: {oneCompany?.company_city ? oneCompany.company_city : "None"}</div>
-                                    <div>Owner: {oneCompany?.company_owner.user_firstname ? oneCompany?.company_owner.user_firstname : "None"}</div>
+                                    <div>Owner: {oneCompany?.company_owner.user_firstname ?
+                                        `${oneCompany.company_owner.user_firstname} with id - ${oneCompany?.company_owner.user_id}`
+                                        : "None"}
+                                    </div>
                                     <div>Is Visible?: {oneCompany?.is_visible ? "Yes" : "No"}</div>
+                                    <div>Phone: {oneCompany?.company_phone ? oneCompany.company_phone : "No"}</div>
                                 </div>
                             }
                         </div>

@@ -32,8 +32,8 @@
 }
 
 .user_img > img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 }
 
 .user_info {
@@ -52,18 +52,20 @@
 .user_information {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: flex-end;
+    width: 90%;
     row-gap: 30px;
     padding: 30px;
 }
 
 .user_information > div {
+    justify-content: flex-end;
     font-size: 15px;
     font-weight: 500;
     color: teal;
     padding: 10px;
     border-bottom: 1px solid teal;
-    width: 70%;
+    width: 90%;
 }
 
 .update_block {
