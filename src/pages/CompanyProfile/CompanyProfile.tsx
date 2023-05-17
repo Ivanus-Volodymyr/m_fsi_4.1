@@ -5,7 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import css from './CompanyProfile.module.css';
 
 import {useAppSelector} from "../../hooks/useAppSelector";
-import {deleteCompany, fetchOneCompany} from "../../store/action-creators";
+import {createRequestFromUserToCompany, deleteCompany, fetchOneCompany} from "../../store/action-creators";
 import {
     Button,
     Modal,
@@ -15,7 +15,7 @@ import {
 } from "../../components";
 import {CreateCompany} from "../../components/ForCompaniesListPage";
 import {clearActionReducer, clearCompanyState} from "../../store/reducers";
-import {createRequestFromUserToCompany} from "../../store/action-creators";
+import useUserRole from "../../hooks/useUserRole";
 
 const CompanyProfile: React.FC = () => {
     const {user} = useAppSelector(state => state.profile);
@@ -30,6 +30,9 @@ const CompanyProfile: React.FC = () => {
     } = useAppSelector(state => state.companies);
 
     const {detail, error} = useAppSelector(state => state.action);
+    const {members} = useAppSelector(state => state.companyData);
+
+    const {isOwner, isAdmin, isMember} = useUserRole(user, members);
 
 
     const dispatch = useDispatch();
@@ -97,7 +100,7 @@ const CompanyProfile: React.FC = () => {
                     <div className={css.company_detail_block_header}>
                         <div>Company: {oneCompany?.company_name}</div>
                         <div>{status}</div>
-                        {oneCompany?.company_owner.user_id === user?.user_id &&
+                        {isOwner &&
                             <Button onClick={() => setModal(true)}>Delete this Company</Button>}
                     </div>
 
@@ -132,7 +135,7 @@ const CompanyProfile: React.FC = () => {
                         <div className={css.company_avatar}>
                             <img src={oneCompany?.company_avatar ? oneCompany.company_avatar : ''}
                                  alt="company_avatar"/>
-                            {oneCompany?.company_owner.user_id !== user?.user_id &&
+                            {!(isOwner || isAdmin || isMember) &&
                                 <Button
                                     onClick={() => dispatch(createRequestFromUserToCompany(Number(oneCompany?.company_id)))}>
                                     Send request to become a member
