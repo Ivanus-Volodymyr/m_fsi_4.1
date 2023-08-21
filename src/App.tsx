@@ -57,7 +57,6 @@ const App = () => {
                         <Route path={'/auth'} element={<Authentication/>}/>
                         <Route path={'/registration'} element={<Registration/>}/>
                     </Route>
-
                     <Route element={<ProtectedRoute user={user} redirectPath={'/auth'}/>}>
                         <Route path={'/companies-list'} element={<CompaniesList/>}/>
                         <Route path={'/company-profile/'} element={<CompanyProfileLayout/>}>
