@@ -15,13 +15,17 @@ import {
 import {CompanyAction} from "../CompanyAction/CompanyAction";
 import {Button, Modal} from "../../GeneralComponnents";
 import {CompanyUsers} from "../../../types";
+import useUserRole from "../../../hooks/useUserRole";
 
 const CompanyProfileMembers: React.FC = () => {
+    const {user} = useAppSelector(state => state.profile);
     const {loading, members} = useAppSelector(state => state.companyData);
     const {detail, isLeavedAction} = useAppSelector(state => state.action);
 
     const dispatch = useDispatch();
     const {id} = useParams();
+
+    const {isOwner} = useUserRole(user, members);
 
 
     const [value, setValue] = useState<CompanyUsers | null>(null);
@@ -29,11 +33,6 @@ const CompanyProfileMembers: React.FC = () => {
     const [removeAdminRole, setRemoveAdminRole] = useState<boolean>(false);
     const [deleteUser, setDeleteUser] = useState<boolean>(false);
     const [block, setBlock] = useState<boolean>(false);
-
-
-    useEffect(() => {
-        dispatch(fetchMembers(Number(id)));
-    }, [id]);
 
 
     useEffect(() => {
@@ -52,7 +51,7 @@ const CompanyProfileMembers: React.FC = () => {
                 {members.length > 0 ? members.map(member =>
 
                         <CompanyAction key={member.user_id} user={member}>
-                            <div className={css.admin_delete}>
+                            {isOwner && <div className={css.admin_delete}>
                                 {member.action !== 'owner' &&
                                     <>
                                         {member.action !== 'admin' ?
@@ -81,7 +80,7 @@ const CompanyProfileMembers: React.FC = () => {
                                         >Add user to block</Button>
                                     </>
                                 }
-                            </div>
+                            </div>}
                         </CompanyAction>) :
 
                     <h2>No any Members for this company!</h2>

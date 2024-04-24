@@ -25,6 +25,12 @@ export const urls = {
     company: '/company/',
 
     //actions
-    action: '/action/'
+    action: '/action/',
+
+    //quiz
+    quiz: '/quiz/',
+
+    //question
+    question: '/question/',
 
 }
