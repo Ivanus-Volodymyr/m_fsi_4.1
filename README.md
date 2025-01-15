@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Getting Started with m_fsi_4.1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## The first step
+Install all the necessary dependencies for the project:
+
+### `npm install`
+
 
 ## Available Scripts
 
@@ -13,8 +18,24 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+#
+### Running an application in Docker
+Follow these steps to get your project started with Docker:
+1. Make sure that Docker is installed on your PC. This can be done with the `docker -v` command.
+   If you don't have Docker installed, do it here [install Docker](https://docs.docker.com/engine/install/).
+2. Make sure you have Docker running.
+3. Make sure you are in the root folder of the project.
 
 
+To run an application in Docker for UNIX-like systems such as macOS or Linux, run the command:
+### `npm run start:docker:unix`
+and write you system password.
+##
+To run an application on Docker for Windows, run the command: run:
+### `npm run start:docker:windows`
+
+##
+### Build the project
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -35,8 +56,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

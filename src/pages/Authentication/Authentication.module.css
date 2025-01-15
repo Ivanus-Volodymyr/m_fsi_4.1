@@ -1,0 +1,31 @@
+.authentication_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+.authentication_container_children {
+    padding: 50px 20px;
+    color: teal;
+    background-color: #def3f3;
+    border: 1px solid teal;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.navigate {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.navigate:hover {
+    cursor: pointer;
+}

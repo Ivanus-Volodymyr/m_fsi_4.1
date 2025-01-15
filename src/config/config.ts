@@ -1,0 +1,17 @@
+interface Env {
+    PORT: string | number;
+    API_URL: string;
+    API_URL_TEST: string;
+    REACT_APP_AUTH0_DOMIAN: string;
+    REACT_APP_AUTH0_CLIENT_ID: string;
+    REACT_APP_AUTH0_AUDIENCE: string;
+}
+
+export const env: Env = {
+    PORT: process.env.PORT || 5000,
+    API_URL: process.env.REACT_APP_API_URL || 'YOU_API_URL',
+    API_URL_TEST: process.env.REACT_APP_TEST_API_URL || 'REACT_APP_TEST_API_URL',
+    REACT_APP_AUTH0_DOMIAN: process.env.REACT_APP_AUTH0_DOMIAN || 'REACT_APP_AUTH0_DOMIAN',
+    REACT_APP_AUTH0_CLIENT_ID: process.env.REACT_APP_AUTH0_CLIENT_ID || 'REACT_APP_AUTH0_CLIENT_ID',
+    REACT_APP_AUTH0_AUDIENCE: process.env.REACT_APP_AUTH0_AUDIENCE || 'REACT_APP_AUTH0_AUDIENCE',
+}

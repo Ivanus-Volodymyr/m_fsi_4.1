@@ -1,0 +1,139 @@
+.company_profile_container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px;
+    width: 90%;
+    height: auto;
+}
+
+.company_detail_block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.company_detail_block_header {
+    display: flex;
+    column-gap: 30px;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 10px;
+    padding: 10px;
+    border-bottom: 1px solid teal;
+    border-top: 1px solid teal;
+}
+
+.company_detail_block_header > div {
+    color: teal;
+    font-size: 18px;
+}
+
+.company_detail_block_main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.company_avatar {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.company_avatar > img {
+    width: 200px;
+    height: 200px;
+}
+
+.company_info {
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.company_info > div:first-child {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.company_information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.company_information > div {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid teal;
+    color: teal;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.update_company_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.update_company_container > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin-top: 20px;
+}
+
+.update_company_container > div > span {
+    font-size: 16px;
+    font-weight: bold;
+    color: teal;
+}
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.modal > h1 {
+    font-size: 28px;
+    color: teal;
+    text-align: center;
+}
+
+.modal > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: teal;
+    font-weight: bolder;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+}

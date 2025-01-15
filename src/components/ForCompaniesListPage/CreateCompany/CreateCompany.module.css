@@ -1,0 +1,65 @@
+.create_company_container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.create_company_container > div:first-child {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+    row-gap: 20px;
+    width: 100%;
+}
+
+.form > span {
+    font-size: 18px;
+    color: teal;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px;
+}
+
+.form > form {
+    padding: 60px 20px;
+    border: 1px solid teal;
+    border-radius: 10px;
+}
+
+.checkbox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: teal;
+}
+
+.checkbox > span {
+    font-size: 16px;
+}
+
+.checkbox > input {
+    width: 50px;
+    height: 20px;
+}
+
+.created {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.created > span {
+    color: teal;
+    font-weight: bold;
+    font-size: 18px;
+}

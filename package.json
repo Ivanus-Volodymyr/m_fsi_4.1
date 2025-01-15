@@ -4,23 +4,34 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
+    "start:docker:unix": "sudo docker-compose up --build",
+    "start:docker:windows": "docker-compose up --build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.0.2",
+    "@hookform/resolvers": "^3.1.0",
+    "@types/auth0": "^3.3.2",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.24",
-    "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
+    "@types/react-redux": "^7.1.25",
+    "@types/redux-thunk": "^2.1.0",
+    "axios": "^1.3.6",
+    "dotenv": "^16.0.3",
+    "joi": "^17.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.4.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
-  },
-  "devDependencies": {
-
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/joi": "^17.2.3",
+    "@types/react": "^18.2.0",
+    "@types/react-router-dom": "^5.3.3"
   }
 }

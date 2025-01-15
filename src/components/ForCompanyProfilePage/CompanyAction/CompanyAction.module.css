@@ -1,0 +1,27 @@
+.company_request_container {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid teal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.user_info > img {
+    width: 100px;
+    height: 100px;
+}
+
+.user_info > div {
+    font-size: 16px;
+    color: teal;
+    font-weight: bold;
+}
+
